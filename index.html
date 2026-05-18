@@ -1,0 +1,1078 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="官庁施設の設計業務等積算要領（令和6年改定）別表1-1の設備係数を用いた、設備設計の一般業務人・時間数と概算費用の簡易計算ツールです。">
+  <meta name="application-name" content="設備設計 一般業務人・時間数 簡易計算">
+  <title>設備設計 一般業務人・時間数 簡易計算</title>
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --panel: #ffffff;
+      --ink: #17202a;
+      --muted: #5f6b76;
+      --line: #d9e0e7;
+      --accent: #1769aa;
+      --accent-dark: #0d4f86;
+      --warn: #9a5b00;
+      --warn-bg: #fff6dd;
+      --ok-bg: #eef7f1;
+      --ok: #1f6b3a;
+      --shadow: 0 10px 24px rgba(22, 34, 51, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.55;
+    }
+
+    header {
+      background: #12324a;
+      color: #fff;
+      padding: 22px 24px;
+      border-bottom: 4px solid var(--accent);
+    }
+
+    header h1 {
+      max-width: 1180px;
+      margin: 0 auto 4px;
+      font-size: clamp(1.35rem, 2.4vw, 2rem);
+      letter-spacing: 0;
+      font-weight: 700;
+    }
+
+    header p {
+      max-width: 1180px;
+      margin: 0 auto;
+      color: #dbe8f2;
+      font-size: 0.95rem;
+    }
+
+    .header-meta {
+      max-width: 1180px;
+      margin: 14px auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .header-meta span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 4px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #eef6fc;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 24px auto;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(320px, 0.9fr) minmax(360px, 1.1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .section-head {
+      padding: 16px 18px 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1rem;
+      letter-spacing: 0;
+    }
+
+    .content {
+      padding: 18px;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 0.82rem;
+    }
+
+    input,
+    select {
+      width: 100%;
+      border: 1px solid #b8c4cf;
+      border-radius: 6px;
+      padding: 10px 11px;
+      font: inherit;
+      color: var(--ink);
+      background: #fff;
+      min-height: 44px;
+    }
+
+    input:focus,
+    select:focus {
+      outline: 3px solid rgba(23, 105, 170, 0.22);
+      border-color: var(--accent);
+    }
+
+    .two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .coeff-box {
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f9fbfd;
+      overflow: hidden;
+    }
+
+    .coeff-row {
+      display: grid;
+      grid-template-columns: 118px 1fr;
+      border-top: 1px solid var(--line);
+    }
+
+    .coeff-row:first-child {
+      border-top: 0;
+    }
+
+    .coeff-row dt,
+    .coeff-row dd {
+      margin: 0;
+      padding: 10px 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .coeff-row dt {
+      background: #edf2f6;
+      color: #3e4c59;
+      font-weight: 700;
+    }
+
+    .status {
+      margin-top: 14px;
+      padding: 11px 12px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+    }
+
+    .status.ok {
+      background: var(--ok-bg);
+      color: var(--ok);
+      border-color: #b9dfc4;
+    }
+
+    .status.warn {
+      background: var(--warn-bg);
+      color: var(--warn);
+      border-color: #ead08a;
+    }
+
+    .result-hero {
+      padding: 18px;
+      border-bottom: 1px solid var(--line);
+      background: #f7fafc;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .result-label {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .result-value {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .result-value strong {
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      line-height: 1;
+      color: #0e4d7c;
+      letter-spacing: 0;
+    }
+
+    .result-value span {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .summary-grid {
+      display: grid;
+      gap: 8px;
+    }
+
+    .summary-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: baseline;
+    }
+
+    .summary-row:last-child {
+      border-bottom: 0;
+    }
+
+    .summary-row .name {
+      color: #344452;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .summary-row .amount {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .summary-row.total {
+      padding-top: 14px;
+      font-size: 1.18rem;
+      border-top: 2px solid #aebdca;
+      border-bottom: 0;
+    }
+
+    .summary-row.total .amount {
+      color: #0e4d7c;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 6px;
+      padding: 11px 16px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      min-height: 44px;
+    }
+
+    .primary {
+      color: #fff;
+      background: var(--accent);
+    }
+
+    .primary:hover {
+      background: var(--accent-dark);
+    }
+
+    .secondary {
+      color: #12324a;
+      background: #e8eef4;
+    }
+
+    .secondary:hover {
+      background: #d8e2eb;
+    }
+
+    .notice {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto 24px;
+      color: #44525f;
+      font-size: 0.9rem;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+
+    .site-footer {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto 28px;
+      color: #3e4c59;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .footer-box {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    .footer-box h2 {
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .footer-box p {
+      margin: 0;
+      font-size: 0.88rem;
+    }
+
+    .footer-version {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-align: right;
+    }
+
+    .toast {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      background: #17202a;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 6px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 860px) {
+      .layout,
+      .two {
+        grid-template-columns: 1fr;
+      }
+
+      main {
+        width: min(100% - 24px, 680px);
+        margin-top: 16px;
+      }
+
+      .notice {
+        width: min(100% - 24px, 680px);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .site-footer {
+        width: min(100% - 24px, 680px);
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      header,
+      main,
+      .notice {
+        width: 100%;
+        margin: 0;
+      }
+
+      header {
+        color: #000;
+        background: #fff;
+        border-bottom: 2px solid #000;
+      }
+
+      section {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+
+      .buttons,
+      .toast {
+        display: none;
+      }
+
+      .layout {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .site-footer {
+        width: 100%;
+        margin-top: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>設備設計 一般業務人・時間数 簡易計算</h1>
+    <p>国土交通省「官庁施設の設計業務等積算要領（令和6年改定）」別表1-1 新築設計業務の「設計・設備」欄に基づく簡易計算</p>
+    <div class="header-meta" aria-label="公開情報">
+      <span>非公式簡易計算ツール</span>
+      <span>入力内容はブラウザ内で処理</span>
+      <span>更新日：2026年5月18日</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="layout">
+      <section aria-labelledby="input-heading">
+        <div class="section-head">
+          <h2 id="input-heading">入力</h2>
+        </div>
+        <div class="content">
+          <div class="form-grid">
+            <label>
+              建築物の類型
+              <select id="typeSelect"></select>
+            </label>
+
+            <label>
+              第1類 / 第2類
+              <select id="classSelect"></select>
+            </label>
+
+            <label>
+              用途名
+              <input id="usageInput" type="text" autocomplete="off">
+              <span class="hint" id="exampleText"></span>
+            </label>
+
+            <label>
+              床面積 S（㎡）
+              <input id="areaInput" type="number" min="0" step="1" value="1000">
+            </label>
+          </div>
+
+          <dl class="coeff-box" aria-label="係数と算定式">
+            <div class="coeff-row">
+              <dt>適用規模</dt>
+              <dd id="rangeDisplay">-</dd>
+            </div>
+            <div class="coeff-row">
+              <dt>算定式</dt>
+              <dd id="formulaDisplay">-</dd>
+            </div>
+            <div class="coeff-row">
+              <dt>係数 a</dt>
+              <dd id="aDisplay">-</dd>
+            </div>
+            <div class="coeff-row">
+              <dt>係数 b</dt>
+              <dd id="bDisplay">-</dd>
+            </div>
+          </dl>
+
+          <div id="rangeStatus" class="status ok" role="status">適用規模内です。</div>
+
+          <div class="form-grid" style="margin-top: 18px;">
+            <div class="two">
+              <label>
+                直接人件費単価（円/人・時間）
+                <input id="unitPriceInput" type="number" min="0" step="1" value="4375">
+              </label>
+              <label>
+                対象外業務率（%）
+                <input id="excludedRateInput" type="number" min="0" step="0.1" value="0">
+              </label>
+            </div>
+
+            <div class="two">
+              <label>
+                難易度係数
+                <input id="difficultyInput" type="number" min="0" step="0.01" value="1.00">
+              </label>
+              <label>
+                追加業務時間（人・時間）
+                <input id="additionalHoursInput" type="number" min="0" step="0.1" value="0">
+              </label>
+            </div>
+
+            <div class="two">
+              <label>
+                諸経費率（%）
+                <input id="overheadRateInput" type="number" min="0" step="0.1" value="110">
+              </label>
+              <label>
+                技術料等経費率（%）
+                <input id="technicalRateInput" type="number" min="0" step="0.1" value="40">
+              </label>
+            </div>
+
+            <div class="two">
+              <label>
+                特別経費（円）
+                <input id="specialExpenseInput" type="number" min="0" step="1" value="0">
+              </label>
+              <label>
+                消費税率（%）
+                <input id="taxRateInput" type="number" min="0" step="0.1" value="10">
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="result-heading">
+        <div class="section-head">
+          <h2 id="result-heading">計算結果</h2>
+        </div>
+        <div class="result-hero">
+          <p class="result-label">一般業務に係る業務人・時間数 A</p>
+          <div class="result-value">
+            <strong id="baseHoursDisplay">0.00</strong>
+            <span>人・時間</span>
+          </div>
+        </div>
+        <div class="content">
+          <div class="summary-grid" id="summaryGrid"></div>
+          <div class="buttons">
+            <button class="primary" type="button" id="copyButton">計算結果をコピー</button>
+            <button class="secondary" type="button" id="printButton">印刷</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <p class="notice">これは簡易計算用であり、正式な積算では最新の要領・契約範囲・追加業務を確認すること。</p>
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <section class="footer-box" aria-labelledby="source-heading">
+        <h2 id="source-heading">算定根拠</h2>
+        <p>国土交通省「官庁施設の設計業務等積算要領（令和6年改定）」別表1-1 新築設計業務の「設計・設備」欄の係数を使用しています。</p>
+      </section>
+      <section class="footer-box" aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">免責事項</h2>
+        <p>本ツールは国土交通省の公式サービスではありません。正式な積算、契約、見積、発注判断では、最新の要領と個別条件を確認してください。</p>
+      </section>
+      <section class="footer-box" aria-labelledby="privacy-heading">
+        <h2 id="privacy-heading">プライバシー</h2>
+        <p>入力内容はこのHTML内のJavaScriptで計算されます。サーバー送信や外部ライブラリの読み込みはありません。</p>
+      </section>
+    </div>
+    <p class="footer-version">Version 1.0.0</p>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite">コピーしました</div>
+
+  <script>
+    const facilityData = [
+      {
+        id: "第一号",
+        name: "物流施設",
+        classes: [
+          {
+            label: "第1類",
+            examples: "車庫、倉庫、立体駐車場等",
+            ranges: [
+              { min: 100, max: 100000, minInclusive: true, maxInclusive: true, formula: "power", a: 5.2655, b: 0.5323 }
+            ]
+          },
+          {
+            label: "第2類",
+            examples: "立体倉庫、物流ターミナル等",
+            ranges: [
+              { min: 3200, max: 100000, minInclusive: true, maxInclusive: true, formula: "power", a: 0.4393, b: 0.8394 }
+            ]
+          }
+        ]
+      },
+      {
+        id: "第二号",
+        name: "生産施設",
+        classes: [
+          {
+            label: "第1類",
+            examples: "組立工場等",
+            ranges: [
+              { min: 100, max: 75000, minInclusive: true, maxInclusive: true, formula: "power", a: 3.5512, b: 0.6567 }
+            ]
+          },
+          {
+            label: "第2類",
+            examples: "化学工場、薬品工場、食品工場、特殊設備を付帯する工場等",
+            ranges: [
+              { min: 100, max: 75000, minInclusive: true, maxInclusive: true, formula: "power", a: 5.9625, b: 0.6567 }
+            ]
+          }
+        ]
+      },
+      {
+        id: "第三号",
+        name: "運動施設",
+        classes: [
+          {
+            label: "第1類",
+            examples: "体育館、武道館、スポーツジム等",
+            ranges: [
+              { min: 340, max: 10000, minInclusive: true, maxInclusive: true, formula: "power", a: 2.1955, b: 0.7979 }
+            ]
+          },
+          {
+            label: "第2類",
+            examples: "屋内プール、スタジアム等",
+            ranges: [
+              { min: 3500, max: 49000, minInclusive: true, maxInclusive: true, formula: "power", a: 8.6959, b: 0.6898 }
+            ]
+          }
+        ]
+      },
+      {
+        id: "第四号",
+        name: "業務施設",
+        classes: [
+          {
+            label: "第1類",
+            examples: "事務所等",
+            ranges: [
+              { min: 100, max: 50000, minInclusive: true, maxInclusive: true, formula: "power", a: 0.2144, b: 1.0615 }
+            ]
+          },
+          {
+            label: "第2類",
+            examples: "銀行、本社ビル、庁舎等",
+            ranges: [
+              { min: 300, max: 20000, minInclusive: true, maxInclusive: false, formula: "power", a: 0.3436, b: 1.0615 },
+              { min: 20000, max: 30000, minInclusive: true, maxInclusive: true, formula: "linear", a: 0.1095, b: 10446.0 },
+              { min: 30000, max: 100000, minInclusive: false, maxInclusive: true, formula: "power", a: 0.5510, b: 0.9820 }
+            ]
+          }
+        ]
+      },
+      {
+        id: "第五号",
+        name: "商業施設",
+        classes: [
+          {
+            label: "第1類",
+            examples: "店舗、料理店、スーパーマーケット等",
+            ranges: [
+              { min: 100, max: 23000, minInclusive: true, maxInclusive: true, formula: "power", a: 0.4473, b: 0.9265 }
+            ]
+          },
+          {
+            label: "第2類",
+            examples: "百貨店、ショッピングセンター、ショールーム等",
+            ranges: [
+              { min: 1500, max: 80000, minInclusive: true, maxInclusive: true, formula: "power", a: 0.4473, b: 0.9265 }
+            ]
+          }
+        ]
+      },
+      {
+        id: "第六号",
+        name: "共同住宅",
+        classes: [
+          {
+            label: "第1類",
+            examples: "公営住宅、社宅、共同住宅、寄宿舎等",
+            ranges: [
+              { min: 100, max: 20000, minInclusive: true, maxInclusive: false, formula: "power", a: 0.5905, b: 0.8970 },
+              { min: 20000, max: 30000, minInclusive: true, maxInclusive: true, formula: "linear", a: 0.2283, b: -307.0 },
+              { min: 30000, max: 100000, minInclusive: false, maxInclusive: true, formula: "power", a: 0.5041, b: 0.9187 }
+            ]
+          }
+        ]
+      },
+      {
+        id: "第七号",
+        name: "教育施設",
+        classes: [
+          {
+            label: "第1類",
+            examples: "幼稚園、小学校、中学校、高等学校等",
+            ranges: [
+              { min: 100, max: 15000, minInclusive: true, maxInclusive: true, formula: "power", a: 4.4473, b: 0.7317 }
+            ]
+          }
+        ]
+      },
+      {
+        id: "第八号",
+        name: "専門的教育・研究施設",
+        classes: [
+          {
+            label: "第1類",
+            examples: "大学、専門学校等",
+            ranges: [
+              { min: 200, max: 50000, minInclusive: true, maxInclusive: true, formula: "power", a: 6.6791, b: 0.6989 }
+            ]
+          },
+          {
+            label: "第2類",
+            examples: "大学、専門学校で実験施設等を有するもの、研究所等",
+            ranges: [
+              { min: 750, max: 50000, minInclusive: true, maxInclusive: true, formula: "power", a: 7.7544, b: 0.6989 }
+            ]
+          }
+        ]
+      },
+      {
+        id: "第九号",
+        name: "宿泊施設",
+        classes: [
+          {
+            label: "第1類",
+            examples: "ホテル、旅館等",
+            ranges: [
+              { min: 200, max: 15000, minInclusive: true, maxInclusive: true, formula: "power", a: 0.3689, b: 0.9792 }
+            ]
+          },
+          {
+            label: "第2類",
+            examples: "ホテルで宴会場等を有するもの、保養所等",
+            ranges: [
+              { min: 4400, max: 46000, minInclusive: true, maxInclusive: true, formula: "power", a: 0.6062, b: 0.9712 }
+            ]
+          }
+        ]
+      },
+      {
+        id: "第十号",
+        name: "医療施設",
+        classes: [
+          {
+            label: "第1類",
+            examples: "病院、診療所等",
+            ranges: [
+              { min: 150, max: 15000, minInclusive: true, maxInclusive: true, formula: "power", a: 1.0152, b: 0.9052 }
+            ]
+          },
+          {
+            label: "第2類",
+            examples: "総合病院等",
+            ranges: [
+              { min: 4200, max: 100000, minInclusive: true, maxInclusive: true, formula: "power", a: 1.8553, b: 0.8269 }
+            ]
+          }
+        ]
+      },
+      {
+        id: "第十一号",
+        name: "福祉・厚生施設",
+        classes: [
+          {
+            label: "第1類",
+            examples: "保育園、老人ホーム、老人保健施設、リハビリセンター、多機能福祉施設等",
+            ranges: [
+              { min: 100, max: 15000, minInclusive: true, maxInclusive: true, formula: "power", a: 0.3618, b: 1.0061 }
+            ]
+          }
+        ]
+      },
+      {
+        id: "第十二号",
+        name: "文化・交流・公益施設",
+        classes: [
+          {
+            label: "第1類",
+            examples: "公民館、集会場、コミュニティセンター等",
+            ranges: [
+              { min: 150, max: 10000, minInclusive: true, maxInclusive: true, formula: "power", a: 1.0305, b: 0.9969 }
+            ]
+          },
+          {
+            label: "第2類",
+            examples: "映画館、劇場、美術館、博物館、図書館、研修所、警察署、消防署等",
+            ranges: [
+              { min: 300, max: 30000, minInclusive: true, maxInclusive: true, formula: "power", a: 1.0585, b: 0.9969 }
+            ]
+          }
+        ]
+      }
+    ];
+
+    const els = {
+      type: document.getElementById("typeSelect"),
+      class: document.getElementById("classSelect"),
+      usage: document.getElementById("usageInput"),
+      example: document.getElementById("exampleText"),
+      area: document.getElementById("areaInput"),
+      unitPrice: document.getElementById("unitPriceInput"),
+      excludedRate: document.getElementById("excludedRateInput"),
+      difficulty: document.getElementById("difficultyInput"),
+      additionalHours: document.getElementById("additionalHoursInput"),
+      overheadRate: document.getElementById("overheadRateInput"),
+      technicalRate: document.getElementById("technicalRateInput"),
+      specialExpense: document.getElementById("specialExpenseInput"),
+      taxRate: document.getElementById("taxRateInput"),
+      range: document.getElementById("rangeDisplay"),
+      formula: document.getElementById("formulaDisplay"),
+      a: document.getElementById("aDisplay"),
+      b: document.getElementById("bDisplay"),
+      status: document.getElementById("rangeStatus"),
+      baseHours: document.getElementById("baseHoursDisplay"),
+      summary: document.getElementById("summaryGrid"),
+      copy: document.getElementById("copyButton"),
+      print: document.getElementById("printButton"),
+      toast: document.getElementById("toast")
+    };
+
+    let lastResultText = "";
+
+    function formatNumber(value, digits = 2) {
+      if (!Number.isFinite(value)) return "0.00";
+      return value.toLocaleString("ja-JP", {
+        minimumFractionDigits: digits,
+        maximumFractionDigits: digits
+      });
+    }
+
+    function formatYen(value) {
+      if (!Number.isFinite(value)) return "0 円";
+      return Math.round(value).toLocaleString("ja-JP") + " 円";
+    }
+
+    function inputNumber(input, fallback = 0) {
+      const value = Number(input.value);
+      return Number.isFinite(value) ? value : fallback;
+    }
+
+    function rangeLabel(range) {
+      const minSign = range.minInclusive ? "≦" : "＜";
+      const maxSign = range.maxInclusive ? "≦" : "＜";
+      return `${range.min.toLocaleString("ja-JP")}㎡${minSign}S${maxSign}${range.max.toLocaleString("ja-JP")}㎡`;
+    }
+
+    function formulaLabel(range) {
+      return range.formula === "linear" ? "A = a × S + b" : "A = a × S^b";
+    }
+
+    function isInsideRange(area, range) {
+      const aboveMin = range.minInclusive ? area >= range.min : area > range.min;
+      const belowMax = range.maxInclusive ? area <= range.max : area < range.max;
+      return aboveMin && belowMax;
+    }
+
+    function distanceToRange(area, range) {
+      if (isInsideRange(area, range)) return 0;
+      if (area < range.min) return range.min - area;
+      if (area > range.max) return area - range.max;
+      return 0.0001;
+    }
+
+    function getSelectedType() {
+      return facilityData[Number(els.type.value)] || facilityData[0];
+    }
+
+    function getSelectedClass() {
+      const selectedType = getSelectedType();
+      return selectedType.classes[Number(els.class.value)] || selectedType.classes[0];
+    }
+
+    function selectRange(area, selectedClass) {
+      const exact = selectedClass.ranges.find((range) => isInsideRange(area, range));
+      if (exact) return { range: exact, inRange: true };
+      const nearest = selectedClass.ranges
+        .slice()
+        .sort((left, right) => distanceToRange(area, left) - distanceToRange(area, right))[0];
+      return { range: nearest, inRange: false };
+    }
+
+    function calculateHours(area, range) {
+      if (range.formula === "linear") {
+        return range.a * area + range.b;
+      }
+      return range.a * Math.pow(area, range.b);
+    }
+
+    function populateTypes() {
+      els.type.innerHTML = facilityData
+        .map((item, index) => `<option value="${index}">${item.id} ${item.name}</option>`)
+        .join("");
+    }
+
+    function populateClasses() {
+      const selectedType = getSelectedType();
+      els.class.innerHTML = selectedType.classes
+        .map((item, index) => `<option value="${index}">${item.label}</option>`)
+        .join("");
+      els.class.disabled = selectedType.classes.length === 1;
+      syncUsageText();
+    }
+
+    function syncUsageText() {
+      const selectedClass = getSelectedClass();
+      els.usage.value = selectedClass.examples;
+      els.example.textContent = `例示：${selectedClass.examples}`;
+    }
+
+    function renderSummary(rows) {
+      els.summary.innerHTML = rows.map((row) => {
+        const totalClass = row.total ? " summary-row total" : "summary-row";
+        return `<div class="${totalClass}">
+          <div class="name">${row.name}</div>
+          <div class="amount">${row.value}</div>
+        </div>`;
+      }).join("");
+    }
+
+    function showToast(message) {
+      els.toast.textContent = message;
+      els.toast.classList.add("show");
+      setTimeout(() => els.toast.classList.remove("show"), 1600);
+    }
+
+    function calculate() {
+      const selectedType = getSelectedType();
+      const selectedClass = getSelectedClass();
+      const area = Math.max(0, inputNumber(els.area));
+      const { range, inRange } = selectRange(area, selectedClass);
+      const baseHours = Math.max(0, calculateHours(area, range));
+      const excludedRate = inputNumber(els.excludedRate) / 100;
+      const difficulty = inputNumber(els.difficulty, 1);
+      const additionalHours = inputNumber(els.additionalHours);
+      const unitPrice = inputNumber(els.unitPrice);
+      const overheadRate = inputNumber(els.overheadRate) / 100;
+      const technicalRate = inputNumber(els.technicalRate) / 100;
+      const specialExpense = inputNumber(els.specialExpense);
+      const taxRate = inputNumber(els.taxRate) / 100;
+
+      const afterExclusion = Math.max(0, baseHours * (1 - excludedRate));
+      const afterDifficulty = Math.max(0, afterExclusion * difficulty);
+      const totalHours = Math.max(0, afterDifficulty + additionalHours);
+      const directLabor = totalHours * unitPrice;
+      const overhead = directLabor * overheadRate;
+      const technical = directLabor * technicalRate;
+      const beforeTax = directLabor + overhead + technical + specialExpense;
+      const tax = beforeTax * taxRate;
+      const afterTax = beforeTax + tax;
+
+      els.range.textContent = rangeLabel(range);
+      els.formula.textContent = formulaLabel(range);
+      els.a.textContent = String(range.a);
+      els.b.textContent = String(range.b);
+      els.baseHours.textContent = formatNumber(baseHours);
+
+      if (inRange) {
+        els.status.className = "status ok";
+        els.status.textContent = "適用規模内です。";
+      } else {
+        els.status.className = "status warn";
+        els.status.textContent = `適用規模外です。計算は最も近い区分（${rangeLabel(range)}）の係数で行っています。`;
+      }
+
+      const rows = [
+        { name: "対象外業務控除後の人・時間", value: `${formatNumber(afterExclusion)} 人・時間` },
+        { name: "難易度補正後の人・時間", value: `${formatNumber(afterDifficulty)} 人・時間` },
+        { name: "追加業務込みの人・時間", value: `${formatNumber(totalHours)} 人・時間` },
+        { name: "直接人件費", value: formatYen(directLabor) },
+        { name: "諸経費", value: formatYen(overhead) },
+        { name: "技術料等経費", value: formatYen(technical) },
+        { name: "特別経費", value: formatYen(specialExpense) },
+        { name: "税抜合計", value: formatYen(beforeTax) },
+        { name: "消費税", value: formatYen(tax) },
+        { name: "税込合計", value: formatYen(afterTax), total: true }
+      ];
+
+      renderSummary(rows);
+
+      lastResultText = [
+        "設備設計 一般業務人・時間数 簡易計算",
+        `建築物の類型：${selectedType.id} ${selectedType.name}`,
+        `類：${selectedClass.label}`,
+        `用途名：${els.usage.value}`,
+        `床面積 S：${formatNumber(area, 0)} ㎡`,
+        `適用規模：${rangeLabel(range)}`,
+        `算定式：${formulaLabel(range)}`,
+        `係数 a：${range.a}`,
+        `係数 b：${range.b}`,
+        `一般業務に係る業務人・時間数 A：${formatNumber(baseHours)} 人・時間`,
+        ...rows.map((row) => `${row.name}：${row.value}`),
+        "注意：これは簡易計算用であり、正式な積算では最新の要領・契約範囲・追加業務を確認すること。",
+        "本ツールは国土交通省の公式サービスではありません。"
+      ].join("\n");
+    }
+
+    populateTypes();
+    populateClasses();
+    calculate();
+
+    els.type.addEventListener("change", () => {
+      populateClasses();
+      calculate();
+    });
+
+    els.class.addEventListener("change", () => {
+      syncUsageText();
+      calculate();
+    });
+
+    document.querySelectorAll("input, select").forEach((input) => {
+      input.addEventListener("input", calculate);
+      input.addEventListener("change", calculate);
+    });
+
+    function fallbackCopy(text) {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.left = "-9999px";
+      document.body.appendChild(textarea);
+      textarea.select();
+      const copied = document.execCommand("copy");
+      document.body.removeChild(textarea);
+      return copied;
+    }
+
+    els.copy.addEventListener("click", async () => {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(lastResultText);
+          showToast("コピーしました");
+          return;
+        }
+        showToast(fallbackCopy(lastResultText) ? "コピーしました" : "コピーできませんでした");
+      } catch (error) {
+        showToast(fallbackCopy(lastResultText) ? "コピーしました" : "コピーできませんでした");
+      }
+    });
+
+    els.print.addEventListener("click", () => {
+      window.print();
+    });
+  </script>
+</body>
+</html>
