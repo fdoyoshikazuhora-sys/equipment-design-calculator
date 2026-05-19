@@ -1165,8 +1165,9 @@
           <div class="form-grid" style="margin-top: 18px;">
             <div class="two" id="rateInputRow">
               <label>
-                技師C基準日額（円/人・日）
-                <input id="engineerDailyRateInput" type="number" min="0" step="1" value="42500">
+                直接人件費日額単価（円/人・日）
+                <input id="directLaborDailyRateInput" type="number" min="0" step="1" value="42500">
+                <span class="hint">初期値42,500円は、国交省「設計業務委託等技術者単価」の技師Cを参考にした値です。実際の見積では、所属事務所の人件費単価、案件条件、契約条件に応じて変更してください。</span>
               </label>
               <label data-single-adjustment>
                 対象外業務率（%）
@@ -1176,14 +1177,15 @@
 
             <div class="rate-note rate-helper-row">
               <span>時間換算単価：<span id="hourlyRateDisplay">5,312.5</span>円/人・時間</span>
-              <span>計算式：技師C基準日額 ÷ 8</span>
+              <span>計算式：直接人件費日額単価 ÷ 8</span>
+              <span class="hint">本アプリでは、入力した日額単価を直接人件費単価として扱い、その後に諸経費率・技術料等経費率を加算します。経費・利益込みの請求単価を入力する場合は、諸経費・技術料等経費との二重計上に注意してください。</span>
               <span class="hint" id="excludedRateModeHint" hidden>複合用途モードでは、工種別内訳表の対象外業務率を使用します。</span>
             </div>
 
             <details class="rate-reference">
-              <summary>参考：令和8年3月適用の設計業務委託等技術者単価</summary>
+              <summary>参考：国交省 設計業務委託等技術者単価の例</summary>
               <div class="rate-reference-content">
-                <table aria-label="令和8年3月適用の設計業務委託等技術者単価の参考例">
+                <table aria-label="国交省 設計業務委託等技術者単価の参考例">
                   <thead>
                     <tr>
                       <th>区分</th>
@@ -1209,7 +1211,7 @@
                     </tr>
                   </tbody>
                 </table>
-                <span class="hint">本アプリでは、官庁施設の設計業務等積算要領の考え方に合わせ、標準入力値を技師C基準日額としています。技師A・技師Bは参考表示です。適用年度の最新単価を確認して入力してください。</span>
+                <span class="hint">上表は参考表示です。本アプリの計算には、入力欄の「直接人件費日額単価」を使用します。適用年度の最新単価や所属事務所の単価を確認して入力してください。</span>
               </div>
             </details>
 
@@ -1311,7 +1313,7 @@
     <div id="estimatePrintSheet" class="estimate-sheet"></div>
   </div>
 
-  <p class="notice">これは簡易計算用であり、正式な積算では最新の要領・契約範囲・追加業務を確認すること。技師C基準日額は、国交省の設計業務委託等技術者単価における1人・日、所定労働時間8時間当たりの単価を想定しています。適用年度の最新単価を確認して入力してください。工種別内訳は、国交省の設計・設備係数により算出した設備一式の業務人・時間数を、配分率で按分した概算です。国交省係数自体が電気・空調・衛生等の工種別係数を示しているわけではありません。実際の見積では、建物用途、設備方式、委託範囲、追加業務、特殊設備の有無に応じて配分率を調整してください。昇降機等は初期値0%です。昇降機、エスカレーター、機械式駐車場等を含める場合は、案件内容に応じて配分率を入力してください。複合用途モードでは、各用途の延べ床面積から設備設計の一般業務人・時間数を算定し、合算後に設計・設備の複合化係数を乗じます。主たる用途が明らかな場合は、主たる用途の単一用途として算定する方法もあります。複数棟の施設の場合は、原則として1棟ごとに算定したものを合計する扱いとし、1棟内の複合用途とは区別してください。</p>
+  <p class="notice">これは簡易計算用であり、正式な積算では最新の要領・契約範囲・追加業務を確認すること。直接人件費日額単価の初期値42,500円は、国交省「設計業務委託等技術者単価」の技師Cを参考にした値です。実際の見積では、所属事務所の人件費単価、案件条件、契約条件に応じて変更してください。本アプリでは、入力した日額単価を直接人件費単価として扱い、その後に諸経費率・技術料等経費率を加算します。経費・利益込みの請求単価を入力する場合は、諸経費・技術料等経費との二重計上に注意してください。工種別内訳は、国交省の設計・設備係数により算出した設備一式の業務人・時間数を、配分率で按分した概算です。国交省係数自体が電気・空調・衛生等の工種別係数を示しているわけではありません。実際の見積では、建物用途、設備方式、委託範囲、追加業務、特殊設備の有無に応じて配分率を調整してください。昇降機等は初期値0%です。昇降機、エスカレーター、機械式駐車場等を含める場合は、案件内容に応じて配分率を入力してください。複合用途モードでは、各用途の延べ床面積から設備設計の一般業務人・時間数を算定し、合算後に設計・設備の複合化係数を乗じます。主たる用途が明らかな場合は、主たる用途の単一用途として算定する方法もあります。複数棟の施設の場合は、原則として1棟ごとに算定したものを合計する扱いとし、1棟内の複合用途とは区別してください。</p>
   <footer class="site-footer">
     <div class="footer-grid">
       <section class="footer-box manual-box" aria-labelledby="manual-heading">
@@ -1319,7 +1321,7 @@
         <ol>
           <li>案件名を入力し、単一用途または複合用途を選択します。</li>
           <li>建物用途、区分、延べ床面積を入力すると、設備設計の一般業務人・時間数が自動計算されます。</li>
-          <li>技師C基準日額、諸経費率、技術料等経費率、消費税率、工種別配分率を案件に合わせて調整します。</li>
+          <li>直接人件費日額単価、諸経費率、技術料等経費率、消費税率、工種別配分率を案件に合わせて調整します。</li>
           <li>必要に応じて、工種別の対象外業務率、難易度係数、追加業務時間、特別経費を入力します。</li>
           <li>端末をまたいで使う場合は「JSON書き出し」でファイルを保存し、別端末で「JSON読み込み」から復元します。</li>
           <li>「見積書プレビュー」で概算見積書を確認し、「見積書を印刷」で見積書だけを印刷できます。</li>
@@ -1338,7 +1340,7 @@
         <p>入力内容、保存済み案件、JSONファイル、見積内容はこのHTML内のJavaScriptで処理され、当サイトのサーバーには送信されません。閲覧状況の把握のため、Cloudflare Web Analyticsによるアクセス解析を利用しています。</p>
       </section>
     </div>
-    <p class="footer-version">Version 1.7.0</p>
+    <p class="footer-version">Version 1.7.1</p>
   </footer>
   <div class="toast" id="toast" role="status" aria-live="polite">コピーしました</div>
 
@@ -1614,7 +1616,7 @@
       mainUseDifference: document.getElementById("mainUseDifferenceDisplay"),
       mainUseDifferenceRate: document.getElementById("mainUseDifferenceRateDisplay"),
       rateInputRow: document.getElementById("rateInputRow"),
-      engineerDailyRate: document.getElementById("engineerDailyRateInput"),
+      directLaborDailyRate: document.getElementById("directLaborDailyRateInput"),
       hourlyRate: document.getElementById("hourlyRateDisplay"),
       excludedRate: document.getElementById("excludedRateInput"),
       excludedRateModeHint: document.getElementById("excludedRateModeHint"),
@@ -1775,7 +1777,7 @@
           applyCompositeFactor: els.applyCompositeFactor.checked
         },
         cost: {
-          engineerDailyRate: els.engineerDailyRate.value,
+          directLaborDailyRate: els.directLaborDailyRate.value,
           excludedRate: els.excludedRate.value,
           difficulty: els.difficulty.value,
           additionalHours: els.additionalHours.value,
@@ -1831,7 +1833,8 @@
       renderCompositeRows();
 
       const cost = state.cost || {};
-      setValue(els.engineerDailyRate, cost.engineerDailyRate);
+      const legacyDirectLaborDailyRate = cost[["engineer", "DailyRate"].join("")];
+      setValue(els.directLaborDailyRate, cost.directLaborDailyRate ?? legacyDirectLaborDailyRate);
       setValue(els.excludedRate, cost.excludedRate);
       setValue(els.difficulty, cost.difficulty);
       setValue(els.additionalHours, cost.additionalHours);
@@ -2589,7 +2592,7 @@
           <div><dt>建物用途</dt><dd>${escapeHtml(data.buildingUse)}</dd></div>
           <div><dt>延べ床面積</dt><dd>${escapeHtml(data.totalArea)}</dd></div>
           <div><dt>算定方式</dt><dd>${escapeHtml(data.calculationMethod)}</dd></div>
-          <div><dt>技師C基準日額</dt><dd>${escapeHtml(formatYen(data.engineerDailyRate).replace(" 円", "円/人・日"))}</dd></div>
+          <div><dt>直接人件費日額単価</dt><dd>${escapeHtml(formatYen(data.directLaborDailyRate).replace(" 円", "円/人・日"))}</dd></div>
           <div><dt>時間換算単価</dt><dd>${escapeHtml(`${formatNumber(data.hourlyRate, 1)}円/人・時間`)}</dd></div>
         </dl>
         <div class="estimate-section">
@@ -2650,8 +2653,8 @@
       const excludedRate = inputNumber(els.excludedRate) / 100;
       const difficulty = inputNumber(els.difficulty, 1);
       const additionalHours = inputNumber(els.additionalHours);
-      const engineerDailyRate = inputNumber(els.engineerDailyRate);
-      const hourlyRate = engineerDailyRate / 8;
+      const directLaborDailyRate = inputNumber(els.directLaborDailyRate);
+      const hourlyRate = directLaborDailyRate / 8;
       const overheadRate = inputNumber(els.overheadRate);
       const technicalRate = inputNumber(els.technicalRate);
       const specialExpense = inputNumber(els.specialExpense);
@@ -2696,7 +2699,7 @@
         { name: "主用途扱い計算", value: `${formatNumber(compositeData.mainUseComparison.mainUseHours, 1)} 人・時間` },
         { name: "主用途扱いとの差分", value: `${formatNumber(compositeData.mainUseComparison.difference, 1)} 人・時間` },
         { name: "主用途扱いとの差分率", value: `${formatNumber(compositeData.mainUseComparison.differenceRate, 1)}%` },
-        { name: "技師C基準日額", value: `${formatNumber(engineerDailyRate, 0)} 円/人・日` },
+        { name: "直接人件費日額単価", value: `${formatNumber(directLaborDailyRate, 0)} 円/人・日` },
         { name: "時間換算単価", value: `${formatNumber(hourlyRate, 1)} 円/人・時間` },
         { name: "直接人件費", value: formatYen(disciplineBreakdown.totals.directLabor) },
         { name: "諸経費", value: formatYen(disciplineBreakdown.totals.overhead) },
@@ -2710,7 +2713,7 @@
         { name: "対象外業務控除後の人・時間", value: `${formatNumber(afterExclusion, 1)} 人・時間` },
         { name: "難易度補正後の人・時間", value: `${formatNumber(afterDifficulty, 1)} 人・時間` },
         { name: "追加業務込みの人・時間", value: `${formatNumber(totalHours, 1)} 人・時間` },
-        { name: "技師C基準日額", value: `${formatNumber(engineerDailyRate, 0)} 円/人・日` },
+        { name: "直接人件費日額単価", value: `${formatNumber(directLaborDailyRate, 0)} 円/人・日` },
         { name: "時間換算単価", value: `${formatNumber(hourlyRate, 1)} 円/人・時間` },
         { name: "直接人件費", value: formatYen(directLabor) },
         { name: "諸経費", value: formatYen(overhead) },
@@ -2758,7 +2761,7 @@
         buildingUse,
         totalArea: `${formatNumber(mode === "composite" ? compositeData.totalArea : area, 0)} ㎡`,
         calculationMethod,
-        engineerDailyRate,
+        directLaborDailyRate,
         hourlyRate,
         baseHours: equipmentHours,
         adjustedHours: estimateTotals.adjustedHours,
@@ -2795,8 +2798,9 @@
           `係数 b：${range.b}`,
           `一般業務に係る業務人・時間数 A：${formatNumber(baseHours, 1)} 人・時間`
         ]),
-        `技師C基準日額：${formatNumber(engineerDailyRate, 0)}円/人・日`,
+        `直接人件費日額単価：${formatNumber(directLaborDailyRate, 0)}円/人・日`,
         `時間換算単価：${formatNumber(hourlyRate, 1)}円/人・時間`,
+        "参考：初期値は国交省 技師C相当単価",
         "直接人件費 = 追加業務込み人・時間 × 時間換算単価",
         ...rows.map((row) => `${row.name}：${row.value}`),
         "",
