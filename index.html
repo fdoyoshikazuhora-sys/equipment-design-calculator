@@ -64,7 +64,8 @@
       gap: 8px;
     }
 
-    .header-meta span {
+    .header-meta span,
+    .header-meta a {
       display: inline-flex;
       align-items: center;
       min-height: 28px;
@@ -75,6 +76,18 @@
       color: #eef6fc;
       font-size: 0.82rem;
       font-weight: 700;
+    }
+
+    .header-meta a {
+      text-decoration: none;
+    }
+
+    .header-meta a:hover {
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .header-help {
+      margin-left: auto;
     }
 
     main {
@@ -94,6 +107,7 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       box-shadow: var(--shadow);
+      min-width: 0;
     }
 
     .section-head {
@@ -109,6 +123,7 @@
 
     .content {
       padding: 18px;
+      min-width: 0;
     }
 
     .form-grid {
@@ -121,12 +136,89 @@
       gap: 6px;
       font-weight: 700;
       font-size: 0.9rem;
+      align-content: start;
     }
 
     .hint {
       color: var(--muted);
       font-weight: 500;
       font-size: 0.82rem;
+    }
+
+    .rate-note {
+      display: grid;
+      gap: 2px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.84rem;
+      line-height: 1.45;
+    }
+
+    .rate-helper-row {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #f9fbfd;
+      padding: 9px 11px;
+    }
+
+    .rate-reference {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #f9fbfd;
+      overflow: hidden;
+    }
+
+    .rate-reference summary {
+      cursor: pointer;
+      padding: 9px 11px;
+      color: #344452;
+      font-size: 0.84rem;
+      font-weight: 700;
+      list-style-position: inside;
+    }
+
+    .rate-reference[open] summary {
+      border-bottom: 1px solid var(--line);
+      background: #edf2f6;
+    }
+
+    .rate-reference-content {
+      padding: 10px 11px 11px;
+    }
+
+    .rate-reference table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .rate-reference th,
+    .rate-reference td {
+      border-bottom: 1px solid var(--line);
+      padding: 7px 6px;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .rate-reference th:first-child,
+    .rate-reference td:first-child {
+      text-align: left;
+    }
+
+    .rate-reference th {
+      color: #344452;
+      background: #fff;
+    }
+
+    .rate-reference tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .rate-reference .hint {
+      display: block;
+      margin-top: 9px;
+      line-height: 1.45;
     }
 
     input,
@@ -138,7 +230,20 @@
       font: inherit;
       color: var(--ink);
       background: #fff;
+      height: 44px;
       min-height: 44px;
+    }
+
+    input:disabled,
+    select:disabled {
+      color: var(--ink);
+      background: #f4f7fa;
+      opacity: 1;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      height: auto;
     }
 
     input:focus,
@@ -151,6 +256,75 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
+      align-items: start;
+    }
+
+    .two > label {
+      align-self: start;
+    }
+
+    .two.single-column {
+      grid-template-columns: 1fr;
+    }
+
+    .composite-factor-row .check-row {
+      margin-top: calc(0.9rem * 1.55 + 6px);
+    }
+
+    .mode-choice {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .mode-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .mode-options label,
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 8px 11px;
+      background: #f9fbfd;
+      font-weight: 700;
+      min-height: 44px;
+    }
+
+    .mode-options input,
+    .check-row input {
+      width: auto;
+      min-height: 0;
+    }
+
+    .mode-panel[hidden],
+    [data-single-adjustment][hidden] {
+      display: none;
+    }
+
+    .save-panel {
+      display: grid;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f9fbfd;
+      padding: 12px;
+    }
+
+    .save-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .save-actions .hint {
+      flex-basis: 100%;
     }
 
     .coeff-box {
@@ -279,6 +453,286 @@
       color: #0e4d7c;
     }
 
+    .breakdown-block {
+      margin-top: 22px;
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+      min-width: 0;
+    }
+
+    .breakdown-head {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .breakdown-head h3 {
+      margin: 0;
+      font-size: 1rem;
+      letter-spacing: 0;
+    }
+
+    .breakdown-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .table-wrap {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .breakdown-table {
+      width: 100%;
+      min-width: 1320px;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+    }
+
+    .breakdown-table th,
+    .breakdown-table td {
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      padding: 8px;
+      vertical-align: middle;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .breakdown-table th:last-child,
+    .breakdown-table td:last-child {
+      border-right: 0;
+    }
+
+    .breakdown-table th {
+      background: #edf2f6;
+      color: #344452;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .breakdown-table tbody tr:last-child td {
+      border-bottom: 1px solid #aebdca;
+    }
+
+    .breakdown-table tfoot td {
+      background: #f7fafc;
+      font-weight: 800;
+      border-bottom: 0;
+    }
+
+    .breakdown-table .left {
+      text-align: left;
+      font-weight: 700;
+    }
+
+    .breakdown-table input {
+      min-height: 34px;
+      padding: 6px 7px;
+      text-align: right;
+      font-size: 0.84rem;
+    }
+
+    .breakdown-table .input-with-unit {
+      display: grid;
+      grid-template-columns: minmax(70px, 1fr) auto;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .breakdown-table .unit {
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .composite-panel {
+      display: grid;
+      gap: 14px;
+    }
+
+    .composite-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .composite-table {
+      min-width: 1180px;
+    }
+
+    .composite-table th,
+    .composite-table td {
+      vertical-align: top;
+    }
+
+    .composite-table input,
+    .composite-table select {
+      min-height: 34px;
+      padding: 6px 7px;
+      font-size: 0.84rem;
+    }
+
+    .composite-table .memo-input {
+      min-width: 140px;
+      text-align: left;
+    }
+
+    .composite-table .area-input {
+      min-width: 100px;
+      text-align: right;
+    }
+
+    .row-warning {
+      display: block;
+      margin-top: 5px;
+      color: var(--warn);
+      font-size: 0.78rem;
+      white-space: normal;
+      line-height: 1.35;
+    }
+
+    .mini-results {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .mini-result {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 10px 12px;
+      background: #f9fbfd;
+    }
+
+    .mini-result span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .mini-result strong {
+      display: block;
+      margin-top: 2px;
+      font-size: 1.08rem;
+      color: #0e4d7c;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .estimate-block {
+      margin-top: 22px;
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+    }
+
+    .estimate-sheet {
+      display: grid;
+      gap: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 18px;
+      color: #17202a;
+    }
+
+    .estimate-title {
+      margin: 0;
+      font-size: 1.2rem;
+      letter-spacing: 0;
+    }
+
+    .estimate-meta,
+    .estimate-total-list {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .estimate-meta div,
+    .estimate-total-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      border-top: 1px solid var(--line);
+    }
+
+    .estimate-meta div:first-child,
+    .estimate-total-row:first-child {
+      border-top: 0;
+    }
+
+    .estimate-meta dt,
+    .estimate-meta dd,
+    .estimate-total-row span {
+      margin: 0;
+      padding: 9px 11px;
+    }
+
+    .estimate-meta dt,
+    .estimate-total-row span:first-child {
+      background: #edf2f6;
+      color: #344452;
+      font-weight: 700;
+    }
+
+    .estimate-total-row span:last-child {
+      text-align: right;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .estimate-section {
+      display: grid;
+      gap: 8px;
+    }
+
+    .estimate-section h4 {
+      margin: 0;
+      font-size: 0.96rem;
+    }
+
+    .estimate-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+    }
+
+    .estimate-table th,
+    .estimate-table td {
+      border: 1px solid var(--line);
+      padding: 8px 9px;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .estimate-table th {
+      background: #edf2f6;
+      color: #344452;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .estimate-table td:first-child,
+    .estimate-table th:first-child {
+      text-align: left;
+    }
+
+    .estimate-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .estimate-print-area {
+      display: none;
+    }
+
     .buttons {
       display: flex;
       gap: 10px;
@@ -354,6 +808,20 @@
       font-size: 0.88rem;
     }
 
+    .footer-box ol {
+      margin: 0;
+      padding-left: 1.35rem;
+      font-size: 0.88rem;
+    }
+
+    .footer-box li + li {
+      margin-top: 6px;
+    }
+
+    .manual-box {
+      grid-column: 1 / -1;
+    }
+
     .footer-version {
       margin: 12px 0 0;
       color: var(--muted);
@@ -383,8 +851,16 @@
 
     @media (max-width: 860px) {
       .layout,
-      .two {
+      .two,
+      .mode-options,
+      .mini-results,
+      .estimate-meta div,
+      .estimate-total-row {
         grid-template-columns: 1fr;
+      }
+
+      .composite-factor-row .check-row {
+        margin-top: 0;
       }
 
       main {
@@ -402,6 +878,10 @@
 
       .site-footer {
         width: min(100% - 24px, 680px);
+      }
+
+      .estimate-table {
+        min-width: 620px;
       }
     }
 
@@ -441,6 +921,26 @@
         width: 100%;
         margin-top: 16px;
       }
+
+      body.estimate-print-mode header,
+      body.estimate-print-mode main,
+      body.estimate-print-mode .notice,
+      body.estimate-print-mode .site-footer,
+      body.estimate-print-mode .toast {
+        display: none !important;
+      }
+
+      body.estimate-print-mode .estimate-print-area {
+        display: block !important;
+        width: 100%;
+        margin: 0;
+      }
+
+      body.estimate-print-mode .estimate-sheet {
+        border: 0;
+        border-radius: 0;
+        padding: 0;
+      }
     }
   </style>
 </head>
@@ -451,7 +951,8 @@
     <div class="header-meta" aria-label="公開情報">
       <span>非公式簡易計算ツール</span>
       <span>入力内容はブラウザ内で処理</span>
-      <span>更新日：2026年5月18日</span>
+      <span>更新日：2026年5月19日</span>
+      <a class="header-help" href="#manual-heading">使い方</a>
     </div>
   </header>
 
@@ -462,68 +963,228 @@
           <h2 id="input-heading">入力</h2>
         </div>
         <div class="content">
-          <div class="form-grid">
+          <div class="form-grid" style="margin-bottom: 16px;">
             <label>
-              建築物の類型
-              <select id="typeSelect"></select>
+              案件名（物件名）
+              <input id="projectNameInput" type="text" autocomplete="off" placeholder="例：○○庁舎改修工事">
             </label>
-
-            <label>
-              第1類 / 第2類
-              <select id="classSelect"></select>
-            </label>
-
-            <label>
-              用途名
-              <input id="usageInput" type="text" autocomplete="off">
-              <span class="hint" id="exampleText"></span>
-            </label>
-
-            <label>
-              床面積 S（㎡）
-              <input id="areaInput" type="number" min="0" step="1" value="1000">
-            </label>
+            <div class="save-panel" aria-label="保存と読み込み">
+              <label>
+                保存済み案件
+                <select id="savedProjectSelect">
+                  <option value="">保存済み案件を選択</option>
+                </select>
+              </label>
+              <div class="save-actions">
+                <button class="primary" type="button" id="saveProjectButton">この案件を保存</button>
+                <button class="secondary" type="button" id="loadProjectButton">読み込み</button>
+                <button class="secondary" type="button" id="deleteProjectButton">削除</button>
+                <button class="secondary" type="button" id="exportProjectButton">JSON書き出し</button>
+                <button class="secondary" type="button" id="importProjectButton">JSON読み込み</button>
+                <input id="importProjectFileInput" type="file" accept="application/json,.json" hidden>
+                <span class="hint" id="saveStatus">保存先はこのブラウザ内です。サーバーには送信されません。</span>
+              </div>
+            </div>
           </div>
 
-          <dl class="coeff-box" aria-label="係数と算定式">
-            <div class="coeff-row">
-              <dt>適用規模</dt>
-              <dd id="rangeDisplay">-</dd>
-            </div>
-            <div class="coeff-row">
-              <dt>算定式</dt>
-              <dd id="formulaDisplay">-</dd>
-            </div>
-            <div class="coeff-row">
-              <dt>係数 a</dt>
-              <dd id="aDisplay">-</dd>
-            </div>
-            <div class="coeff-row">
-              <dt>係数 b</dt>
-              <dd id="bDisplay">-</dd>
-            </div>
-          </dl>
-
-          <div id="rangeStatus" class="status ok" role="status">適用規模内です。</div>
-
-          <div class="form-grid" style="margin-top: 18px;">
-            <div class="two">
+          <div class="mode-choice" aria-label="計算モード">
+            <span class="hint">計算モード</span>
+            <div class="mode-options">
               <label>
-                直接人件費単価（円/人・時間）
-                <input id="unitPriceInput" type="number" min="0" step="1" value="4375">
+                <input type="radio" name="calcMode" value="single" checked>
+                単一用途モード
               </label>
               <label>
+                <input type="radio" name="calcMode" value="composite">
+                複合用途モード
+              </label>
+            </div>
+          </div>
+
+          <div id="singleModePanel" class="mode-panel">
+            <div class="form-grid">
+              <label>
+                建築物の類型
+                <select id="typeSelect"></select>
+              </label>
+
+              <label>
+                第1類 / 第2類
+                <select id="classSelect"></select>
+              </label>
+
+              <label>
+                用途名
+                <input id="usageInput" type="text" autocomplete="off">
+                <span class="hint" id="exampleText"></span>
+              </label>
+
+              <label>
+                延べ床面積 S（㎡）
+                <span class="hint">※ 国交省要領上の「床面積の合計」</span>
+                <input id="areaInput" type="number" min="0" step="1" value="1000">
+                <span class="hint">対象建築物の各階床面積の合計を入力してください。建築面積、敷地面積、賃貸面積、専有面積ではありません。</span>
+              </label>
+            </div>
+
+            <dl class="coeff-box" aria-label="係数と算定式">
+              <div class="coeff-row">
+                <dt>適用規模</dt>
+                <dd id="rangeDisplay">-</dd>
+              </div>
+              <div class="coeff-row">
+                <dt>算定式</dt>
+                <dd id="formulaDisplay">-</dd>
+              </div>
+              <div class="coeff-row">
+                <dt>係数 a</dt>
+                <dd id="aDisplay">-</dd>
+              </div>
+              <div class="coeff-row">
+                <dt>係数 b</dt>
+                <dd id="bDisplay">-</dd>
+              </div>
+            </dl>
+
+            <div id="rangeStatus" class="status ok" role="status">適用規模内です。</div>
+          </div>
+
+          <div id="compositeModePanel" class="mode-panel composite-panel" hidden>
+            <p class="breakdown-note">主たる用途が明らかな場合は、複合用途として各用途別に算定せず、主たる用途の単一用途として算定する方法もあります。</p>
+            <p class="breakdown-note">複合用途モードでは、用途ごとの延べ床面積を個別に入力してください。初期表示は用途1・用途2までです。用途3以降がある場合は「用途を追加」から追加してください。</p>
+            <div id="compositeModeStatus" class="status ok" role="status">複合用途モードでは、2以上の用途を入力してください。</div>
+            <div class="two composite-factor-row">
+              <label>
+                複合化係数
+                <input id="compositeFactorInput" type="number" min="0" step="0.01" value="1.07">
+              </label>
+              <label class="check-row">
+                <input id="applyCompositeFactorInput" type="checkbox" checked>
+                複合化係数を適用する
+              </label>
+            </div>
+            <div class="table-wrap" aria-label="複合用途別入力・計算表">
+              <table class="breakdown-table composite-table">
+                <thead>
+                  <tr>
+                    <th>主用途扱い比較に使用</th>
+                    <th>用途名メモ</th>
+                    <th>類型</th>
+                    <th>区分</th>
+                    <th>延べ床面積S</th>
+                    <th>適用規模</th>
+                    <th>算定式</th>
+                    <th>係数a</th>
+                    <th>係数b</th>
+                    <th>設備人・時間A</th>
+                    <th>削除</th>
+                  </tr>
+                </thead>
+                <tbody id="compositeBody"></tbody>
+              </table>
+            </div>
+            <div class="composite-actions">
+              <button class="secondary" type="button" id="addCompositeRowButton">用途を追加</button>
+            </div>
+            <div class="mini-results" aria-label="用途別合計">
+              <div class="mini-result">
+                <span>用途別延べ床面積合計</span>
+                <strong id="compositeAreaTotalDisplay">0㎡</strong>
+              </div>
+              <div class="mini-result">
+                <span>複合前設備人・時間合計</span>
+                <strong id="baseCompositeHoursDisplay">0.0</strong>
+              </div>
+              <div class="mini-result">
+                <span>複合化係数</span>
+                <strong id="effectiveCompositeFactorDisplay">1.07</strong>
+              </div>
+              <div class="mini-result">
+                <span>複合後設備人・時間</span>
+                <strong id="compositeHoursDisplay">0.0</strong>
+              </div>
+            </div>
+            <div class="breakdown-head">
+              <h3>主用途扱いとの比較</h3>
+              <p class="breakdown-note">下の選択は比較用です。複合用途計算そのものと工種別内訳には、複合後設備人・時間を使用します。</p>
+            </div>
+            <div class="mini-results" aria-label="主用途扱いとの比較">
+              <div class="mini-result">
+                <span>複合用途計算</span>
+                <strong id="comparisonCompositeHoursDisplay">0.0</strong>
+              </div>
+              <div class="mini-result">
+                <span>主用途扱い計算</span>
+                <strong id="mainUseHoursDisplay">0.0</strong>
+              </div>
+              <div class="mini-result">
+                <span>差分</span>
+                <strong id="mainUseDifferenceDisplay">0.0</strong>
+              </div>
+              <div class="mini-result">
+                <span>差分率</span>
+                <strong id="mainUseDifferenceRateDisplay">0.0%</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-grid" style="margin-top: 18px;">
+            <div class="two" id="rateInputRow">
+              <label>
+                技師C基準日額（円/人・日）
+                <input id="engineerDailyRateInput" type="number" min="0" step="1" value="42500">
+              </label>
+              <label data-single-adjustment>
                 対象外業務率（%）
                 <input id="excludedRateInput" type="number" min="0" step="0.1" value="0">
               </label>
             </div>
 
+            <div class="rate-note rate-helper-row">
+              <span>時間換算単価：<span id="hourlyRateDisplay">5,312.5</span>円/人・時間</span>
+              <span>計算式：技師C基準日額 ÷ 8</span>
+              <span class="hint" id="excludedRateModeHint" hidden>複合用途モードでは、工種別内訳表の対象外業務率を使用します。</span>
+            </div>
+
+            <details class="rate-reference">
+              <summary>参考：令和8年3月適用の設計業務委託等技術者単価</summary>
+              <div class="rate-reference-content">
+                <table aria-label="令和8年3月適用の設計業務委託等技術者単価の参考例">
+                  <thead>
+                    <tr>
+                      <th>区分</th>
+                      <th>基準日額</th>
+                      <th>1時間換算</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>技師A</td>
+                      <td>62,600円/人・日</td>
+                      <td>7,825円/人・時間</td>
+                    </tr>
+                    <tr>
+                      <td>技師B</td>
+                      <td>49,300円/人・日</td>
+                      <td>6,162.5円/人・時間</td>
+                    </tr>
+                    <tr>
+                      <td>技師C</td>
+                      <td>42,500円/人・日</td>
+                      <td>5,312.5円/人・時間</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <span class="hint">本アプリでは、官庁施設の設計業務等積算要領の考え方に合わせ、標準入力値を技師C基準日額としています。技師A・技師Bは参考表示です。適用年度の最新単価を確認して入力してください。</span>
+              </div>
+            </details>
+
             <div class="two">
-              <label>
+              <label data-single-adjustment>
                 難易度係数
                 <input id="difficultyInput" type="number" min="0" step="0.01" value="1.00">
               </label>
-              <label>
+              <label data-single-adjustment>
                 追加業務時間（人・時間）
                 <input id="additionalHoursInput" type="number" min="0" step="0.1" value="0">
               </label>
@@ -531,17 +1192,17 @@
 
             <div class="two">
               <label>
-                諸経費率（%）
-                <input id="overheadRateInput" type="number" min="0" step="0.1" value="110">
+                諸経費率（係数）
+                <input id="overheadRateInput" type="number" min="0" step="0.01" value="1.10">
               </label>
               <label>
-                技術料等経費率（%）
-                <input id="technicalRateInput" type="number" min="0" step="0.1" value="40">
+                技術料等経費率（係数）
+                <input id="technicalRateInput" type="number" min="0" step="0.01" value="0.15">
               </label>
             </div>
 
             <div class="two">
-              <label>
+              <label data-single-adjustment>
                 特別経費（円）
                 <input id="specialExpenseInput" type="number" min="0" step="1" value="0">
               </label>
@@ -567,18 +1228,69 @@
         </div>
         <div class="content">
           <div class="summary-grid" id="summaryGrid"></div>
+          <div class="breakdown-block" aria-labelledby="breakdown-heading">
+            <div class="breakdown-head">
+              <h3 id="breakdown-heading">工種別内訳</h3>
+              <p class="breakdown-note">工種別内訳は設備一式の業務人・時間数を配分率で按分した概算です。</p>
+            </div>
+            <div id="disciplineStatus" class="status ok" role="status">工種別配分率の合計は100%です。</div>
+            <div class="table-wrap" aria-label="工種別内訳表">
+              <table class="breakdown-table">
+                <thead>
+                  <tr>
+                    <th>工種</th>
+                    <th>配分率</th>
+                    <th>一般業務人・時間</th>
+                    <th>対象外業務率</th>
+                    <th>難易度係数</th>
+                    <th>追加業務時間</th>
+                    <th>補正後人・時間</th>
+                    <th>直接人件費</th>
+                    <th>諸経費</th>
+                    <th>技術料等経費</th>
+                    <th>特別経費</th>
+                    <th>税抜金額</th>
+                    <th>消費税</th>
+                    <th>税込金額</th>
+                  </tr>
+                </thead>
+                <tbody id="disciplineBody"></tbody>
+                <tfoot id="disciplineFoot"></tfoot>
+              </table>
+            </div>
+          </div>
+          <div class="estimate-block" id="estimatePreview" hidden>
+            <div id="estimateSheet" class="estimate-sheet" aria-label="概算見積書プレビュー"></div>
+          </div>
           <div class="buttons">
             <button class="primary" type="button" id="copyButton">計算結果をコピー</button>
-            <button class="secondary" type="button" id="printButton">印刷</button>
+            <button class="secondary" type="button" id="estimatePreviewButton">見積書プレビュー</button>
+            <button class="secondary" type="button" id="estimatePrintButton">見積書を印刷</button>
+            <button class="secondary" type="button" id="printButton">画面を印刷</button>
           </div>
         </div>
       </section>
     </div>
   </main>
 
-  <p class="notice">これは簡易計算用であり、正式な積算では最新の要領・契約範囲・追加業務を確認すること。</p>
+  <div class="estimate-print-area" id="estimatePrintArea" aria-hidden="true">
+    <div id="estimatePrintSheet" class="estimate-sheet"></div>
+  </div>
+
+  <p class="notice">これは簡易計算用であり、正式な積算では最新の要領・契約範囲・追加業務を確認すること。技師C基準日額は、国交省の設計業務委託等技術者単価における1人・日、所定労働時間8時間当たりの単価を想定しています。適用年度の最新単価を確認して入力してください。工種別内訳は、国交省の設計・設備係数により算出した設備一式の業務人・時間数を、配分率で按分した概算です。国交省係数自体が電気・空調・衛生等の工種別係数を示しているわけではありません。実際の見積では、建物用途、設備方式、委託範囲、追加業務、特殊設備の有無に応じて配分率を調整してください。昇降機等は初期値0%です。昇降機、エスカレーター、機械式駐車場等を含める場合は、案件内容に応じて配分率を入力してください。複合用途モードでは、各用途の延べ床面積から設備設計の一般業務人・時間数を算定し、合算後に設計・設備の複合化係数を乗じます。主たる用途が明らかな場合は、主たる用途の単一用途として算定する方法もあります。複数棟の施設の場合は、原則として1棟ごとに算定したものを合計する扱いとし、1棟内の複合用途とは区別してください。</p>
   <footer class="site-footer">
     <div class="footer-grid">
+      <section class="footer-box manual-box" aria-labelledby="manual-heading">
+        <h2 id="manual-heading">簡単な使い方</h2>
+        <ol>
+          <li>案件名を入力し、単一用途または複合用途を選択します。</li>
+          <li>建物用途、区分、延べ床面積を入力すると、設備設計の一般業務人・時間数が自動計算されます。</li>
+          <li>技師C基準日額、諸経費率、技術料等経費率、消費税率、工種別配分率を案件に合わせて調整します。</li>
+          <li>必要に応じて、工種別の対象外業務率、難易度係数、追加業務時間、特別経費を入力します。</li>
+          <li>端末をまたいで使う場合は「JSON書き出し」でファイルを保存し、別端末で「JSON読み込み」から復元します。</li>
+          <li>「見積書プレビュー」で概算見積書を確認し、「見積書を印刷」で見積書だけを印刷できます。</li>
+        </ol>
+      </section>
       <section class="footer-box" aria-labelledby="source-heading">
         <h2 id="source-heading">算定根拠</h2>
         <p>国土交通省「官庁施設の設計業務等積算要領（令和6年改定）」別表1-1 新築設計業務の「設計・設備」欄の係数を使用しています。</p>
@@ -592,7 +1304,7 @@
         <p>入力内容はこのHTML内のJavaScriptで計算されます。サーバー送信や外部ライブラリの読み込みはありません。</p>
       </section>
     </div>
-    <p class="footer-version">Version 1.0.0</p>
+    <p class="footer-version">Version 1.6.0</p>
   </footer>
   <div class="toast" id="toast" role="status" aria-live="polite">コピーしました</div>
 
@@ -823,14 +1535,55 @@
       }
     ];
 
+    const disciplineDefaults = [
+      { name: "電気設備", allocation: 40, excludedRate: 0, difficulty: 1, additionalHours: 0, specialExpense: 0 },
+      { name: "空調換気設備", allocation: 20, excludedRate: 0, difficulty: 1, additionalHours: 0, specialExpense: 0 },
+      { name: "給排水衛生設備", allocation: 30, excludedRate: 0, difficulty: 1, additionalHours: 0, specialExpense: 0 },
+      { name: "昇降機等", allocation: 0, excludedRate: 0, difficulty: 1, additionalHours: 0, specialExpense: 0 },
+      { name: "共通・調整", allocation: 10, excludedRate: 0, difficulty: 1, additionalHours: 0, specialExpense: 0 }
+    ];
+
+    const initialCompositeRows = [
+      { typeIndex: 0, classIndex: 0, area: "" },
+      { typeIndex: 0, classIndex: 0, area: "" }
+    ];
+
     const els = {
+      projectName: document.getElementById("projectNameInput"),
+      savedProjectSelect: document.getElementById("savedProjectSelect"),
+      saveProject: document.getElementById("saveProjectButton"),
+      loadProject: document.getElementById("loadProjectButton"),
+      deleteProject: document.getElementById("deleteProjectButton"),
+      exportProject: document.getElementById("exportProjectButton"),
+      importProject: document.getElementById("importProjectButton"),
+      importProjectFile: document.getElementById("importProjectFileInput"),
+      saveStatus: document.getElementById("saveStatus"),
+      modeInputs: Array.from(document.querySelectorAll("input[name='calcMode']")),
+      singleModePanel: document.getElementById("singleModePanel"),
+      compositeModePanel: document.getElementById("compositeModePanel"),
+      compositeModeStatus: document.getElementById("compositeModeStatus"),
       type: document.getElementById("typeSelect"),
       class: document.getElementById("classSelect"),
       usage: document.getElementById("usageInput"),
       example: document.getElementById("exampleText"),
       area: document.getElementById("areaInput"),
-      unitPrice: document.getElementById("unitPriceInput"),
+      compositeBody: document.getElementById("compositeBody"),
+      addCompositeRow: document.getElementById("addCompositeRowButton"),
+      compositeFactor: document.getElementById("compositeFactorInput"),
+      applyCompositeFactor: document.getElementById("applyCompositeFactorInput"),
+      compositeAreaTotal: document.getElementById("compositeAreaTotalDisplay"),
+      baseCompositeHours: document.getElementById("baseCompositeHoursDisplay"),
+      effectiveCompositeFactor: document.getElementById("effectiveCompositeFactorDisplay"),
+      compositeHours: document.getElementById("compositeHoursDisplay"),
+      comparisonCompositeHours: document.getElementById("comparisonCompositeHoursDisplay"),
+      mainUseHours: document.getElementById("mainUseHoursDisplay"),
+      mainUseDifference: document.getElementById("mainUseDifferenceDisplay"),
+      mainUseDifferenceRate: document.getElementById("mainUseDifferenceRateDisplay"),
+      rateInputRow: document.getElementById("rateInputRow"),
+      engineerDailyRate: document.getElementById("engineerDailyRateInput"),
+      hourlyRate: document.getElementById("hourlyRateDisplay"),
       excludedRate: document.getElementById("excludedRateInput"),
+      excludedRateModeHint: document.getElementById("excludedRateModeHint"),
       difficulty: document.getElementById("difficultyInput"),
       additionalHours: document.getElementById("additionalHoursInput"),
       overheadRate: document.getElementById("overheadRateInput"),
@@ -844,12 +1597,26 @@
       status: document.getElementById("rangeStatus"),
       baseHours: document.getElementById("baseHoursDisplay"),
       summary: document.getElementById("summaryGrid"),
+      disciplineStatus: document.getElementById("disciplineStatus"),
+      disciplineBody: document.getElementById("disciplineBody"),
+      disciplineFoot: document.getElementById("disciplineFoot"),
+      estimatePreview: document.getElementById("estimatePreview"),
+      estimateSheet: document.getElementById("estimateSheet"),
+      estimatePrintArea: document.getElementById("estimatePrintArea"),
+      estimatePrintSheet: document.getElementById("estimatePrintSheet"),
+      estimatePreviewButton: document.getElementById("estimatePreviewButton"),
+      estimatePrint: document.getElementById("estimatePrintButton"),
       copy: document.getElementById("copyButton"),
       print: document.getElementById("printButton"),
       toast: document.getElementById("toast")
     };
 
     let lastResultText = "";
+    let lastEstimateHtml = "";
+    const savedProjectsKey = "equipmentDesignCalculator.savedProjects.v2";
+    let compositeRowId = 0;
+    let compositeRows = initialCompositeRows.map((row) => ({ id: compositeRowId++, ...row }));
+    let mainUseRowId = compositeRows[0]?.id ?? null;
 
     function formatNumber(value, digits = 2) {
       if (!Number.isFinite(value)) return "0.00";
@@ -864,9 +1631,320 @@
       return Math.round(value).toLocaleString("ja-JP") + " 円";
     }
 
+    function roundTo(value, digits = 1) {
+      const factor = Math.pow(10, digits);
+      return Math.round((value + Number.EPSILON) * factor) / factor;
+    }
+
     function inputNumber(input, fallback = 0) {
       const value = Number(input.value);
       return Number.isFinite(value) ? value : fallback;
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function getMode() {
+      return document.querySelector("input[name='calcMode']:checked")?.value || "single";
+    }
+
+    function readSavedProjects() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(savedProjectsKey) || "{}");
+        return saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {};
+      } catch (error) {
+        return {};
+      }
+    }
+
+    function writeSavedProjects(projects) {
+      try {
+        localStorage.setItem(savedProjectsKey, JSON.stringify(projects));
+        return true;
+      } catch (error) {
+        return false;
+      }
+    }
+
+    function renderSavedProjectOptions(selectedName = "") {
+      const projects = readSavedProjects();
+      const names = Object.keys(projects).sort((a, b) => {
+        const aDate = projects[a]?.savedAt || "";
+        const bDate = projects[b]?.savedAt || "";
+        return bDate.localeCompare(aDate) || a.localeCompare(b, "ja");
+      });
+
+      els.savedProjectSelect.innerHTML = [
+        '<option value="">保存済み案件を選択</option>',
+        ...names.map((name) => `<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`)
+      ].join("");
+      els.savedProjectSelect.value = selectedName;
+      els.saveStatus.textContent = names.length
+        ? `保存済み案件：${names.length}件`
+        : "保存先はこのブラウザ内です。サーバーには送信されません。";
+    }
+
+    function getCurrentDisciplineSettings() {
+      return disciplineDefaults.map((item, index) => ({
+        allocation: getDisciplineValue(index, "allocation", item.allocation),
+        excludedRate: getDisciplineValue(index, "excludedRate", item.excludedRate),
+        difficulty: getDisciplineValue(index, "difficulty", item.difficulty),
+        additionalHours: getDisciplineValue(index, "additionalHours", item.additionalHours),
+        specialExpense: getDisciplineValue(index, "specialExpense", item.specialExpense)
+      }));
+    }
+
+    function setDisciplineSettings(settings = []) {
+      disciplineDefaults.forEach((item, index) => {
+        const saved = settings[index] || {};
+        [
+          ["allocation", item.allocation],
+          ["excludedRate", item.excludedRate],
+          ["difficulty", item.difficulty],
+          ["additionalHours", item.additionalHours],
+          ["specialExpense", item.specialExpense]
+        ].forEach(([field, fallback]) => {
+          const input = document.querySelector(`[data-discipline-index="${index}"][data-field="${field}"]`);
+          if (!input) return;
+          input.value = saved[field] ?? fallback;
+        });
+      });
+    }
+
+    function captureProjectState() {
+      return {
+        version: 1,
+        savedAt: new Date().toISOString(),
+        projectName: els.projectName.value.trim(),
+        mode: getMode(),
+        single: {
+          typeIndex: Number(els.type.value),
+          classIndex: Number(els.class.value),
+          usage: els.usage.value,
+          area: els.area.value
+        },
+        composite: {
+          rows: compositeRows.map((row) => ({
+            usageMemo: row.usageMemo,
+            typeIndex: row.typeIndex,
+            classIndex: row.classIndex,
+            area: row.area
+          })),
+          mainUseIndex: Math.max(0, compositeRows.findIndex((row) => row.id === mainUseRowId)),
+          compositeFactor: els.compositeFactor.value,
+          applyCompositeFactor: els.applyCompositeFactor.checked
+        },
+        cost: {
+          engineerDailyRate: els.engineerDailyRate.value,
+          excludedRate: els.excludedRate.value,
+          difficulty: els.difficulty.value,
+          additionalHours: els.additionalHours.value,
+          overheadRate: els.overheadRate.value,
+          technicalRate: els.technicalRate.value,
+          specialExpense: els.specialExpense.value,
+          taxRate: els.taxRate.value
+        },
+        disciplines: getCurrentDisciplineSettings()
+      };
+    }
+
+    function setValue(input, value) {
+      if (input && value !== undefined && value !== null) input.value = value;
+    }
+
+    function applyProjectState(state) {
+      if (!state || typeof state !== "object") return false;
+
+      setValue(els.projectName, state.projectName || "");
+      const mode = state.mode === "composite" ? "composite" : "single";
+      els.modeInputs.forEach((input) => {
+        input.checked = input.value === mode;
+      });
+
+      const single = state.single || {};
+      const typeIndex = Math.min(Math.max(Number(single.typeIndex) || 0, 0), facilityData.length - 1);
+      els.type.value = String(typeIndex);
+      populateClasses();
+      const maxClassIndex = facilityData[typeIndex].classes.length - 1;
+      els.class.value = String(Math.min(Math.max(Number(single.classIndex) || 0, 0), maxClassIndex));
+      syncUsageText();
+      setValue(els.usage, single.usage);
+      setValue(els.area, single.area);
+
+      const composite = state.composite || {};
+      const savedRows = Array.isArray(composite.rows) && composite.rows.length ? composite.rows : initialCompositeRows;
+      compositeRowId = 0;
+      compositeRows = savedRows.map((row) => ({
+        id: compositeRowId++,
+        usageMemo: row.usageMemo || "",
+        typeIndex: Math.min(Math.max(Number(row.typeIndex) || 0, 0), facilityData.length - 1),
+        classIndex: Math.max(Number(row.classIndex) || 0, 0),
+        area: row.area ?? ""
+      }));
+      while (compositeRows.length < 2) {
+        compositeRows.push({ id: compositeRowId++, typeIndex: 0, classIndex: 0, area: "" });
+      }
+      const mainIndex = Math.min(Math.max(Number(composite.mainUseIndex) || 0, 0), compositeRows.length - 1);
+      mainUseRowId = compositeRows[mainIndex]?.id ?? compositeRows[0]?.id ?? null;
+      setValue(els.compositeFactor, composite.compositeFactor);
+      els.applyCompositeFactor.checked = composite.applyCompositeFactor !== false;
+      renderCompositeRows();
+
+      const cost = state.cost || {};
+      setValue(els.engineerDailyRate, cost.engineerDailyRate);
+      setValue(els.excludedRate, cost.excludedRate);
+      setValue(els.difficulty, cost.difficulty);
+      setValue(els.additionalHours, cost.additionalHours);
+      setValue(els.overheadRate, cost.overheadRate);
+      setValue(els.technicalRate, cost.technicalRate);
+      setValue(els.specialExpense, cost.specialExpense);
+      setValue(els.taxRate, cost.taxRate);
+      setDisciplineSettings(state.disciplines);
+
+      setModeVisibility();
+      calculate();
+      return true;
+    }
+
+    function saveCurrentProject() {
+      const name = els.projectName.value.trim();
+      if (!name) {
+        els.saveStatus.textContent = "保存するには案件名（物件名）を入力してください。";
+        showToast("案件名を入力してください");
+        return;
+      }
+
+      const projects = readSavedProjects();
+      projects[name] = captureProjectState();
+      projects[name].projectName = name;
+      if (!writeSavedProjects(projects)) {
+        els.saveStatus.textContent = "保存できませんでした。ブラウザの保存設定を確認してください。";
+        showToast("保存できませんでした");
+        return;
+      }
+
+      renderSavedProjectOptions(name);
+      els.saveStatus.textContent = `「${name}」を保存しました。`;
+      showToast("保存しました");
+    }
+
+    function loadSelectedProject() {
+      const name = els.savedProjectSelect.value;
+      const projects = readSavedProjects();
+      if (!name || !projects[name]) {
+        els.saveStatus.textContent = "読み込む保存済み案件を選択してください。";
+        showToast("案件を選択してください");
+        return;
+      }
+
+      applyProjectState(projects[name]);
+      els.savedProjectSelect.value = name;
+      els.saveStatus.textContent = `「${name}」を読み込みました。`;
+      showToast("読み込みました");
+    }
+
+    function deleteSelectedProject() {
+      const name = els.savedProjectSelect.value;
+      const projects = readSavedProjects();
+      if (!name || !projects[name]) {
+        els.saveStatus.textContent = "削除する保存済み案件を選択してください。";
+        showToast("案件を選択してください");
+        return;
+      }
+
+      if (!window.confirm(`保存済み案件「${name}」を削除しますか？`)) return;
+      delete projects[name];
+      if (!writeSavedProjects(projects)) {
+        els.saveStatus.textContent = "削除できませんでした。";
+        showToast("削除できませんでした");
+        return;
+      }
+      renderSavedProjectOptions();
+      els.saveStatus.textContent = `「${name}」を削除しました。`;
+      showToast("削除しました");
+    }
+
+    function sanitizeFileName(value) {
+      const name = String(value || "設備設計費_概算見積").trim();
+      return name.replace(/[\\/:*?"<>|]/g, "_").replace(/\s+/g, "_").slice(0, 80) || "設備設計費_概算見積";
+    }
+
+    function exportCurrentProject() {
+      const state = captureProjectState();
+      const projectName = state.projectName || "未命名案件";
+      state.projectName = projectName;
+      const payload = {
+        app: "equipment-design-calculator",
+        formatVersion: 1,
+        exportedAt: new Date().toISOString(),
+        project: state
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${sanitizeFileName(projectName)}.json`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      els.saveStatus.textContent = `「${projectName}」を書き出しました。別端末ではJSON読み込みから復元できます。`;
+      showToast("JSONを書き出しました");
+    }
+
+    function importProjectPayload(payload) {
+      const state = payload?.project || payload;
+      if (!state || typeof state !== "object") return false;
+      if (!applyProjectState(state)) return false;
+
+      const name = els.projectName.value.trim();
+      if (name) {
+        const projects = readSavedProjects();
+        const savedState = captureProjectState();
+        savedState.projectName = name;
+        projects[name] = savedState;
+        if (writeSavedProjects(projects)) {
+          renderSavedProjectOptions(name);
+          els.saveStatus.textContent = `JSONから「${name}」を読み込み、保存済み案件に追加しました。`;
+        } else {
+          renderSavedProjectOptions();
+          els.saveStatus.textContent = `JSONから「${name}」を読み込みました。保存済み案件への追加はできませんでした。`;
+        }
+      } else {
+        renderSavedProjectOptions();
+        els.saveStatus.textContent = "JSONを読み込みました。案件名を入力すると保存できます。";
+      }
+      showToast("JSONを読み込みました");
+      return true;
+    }
+
+    function importProjectFromFile(event) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        try {
+          const payload = JSON.parse(String(reader.result || "{}"));
+          if (!importProjectPayload(payload)) throw new Error("invalid payload");
+        } catch (error) {
+          els.saveStatus.textContent = "JSONを読み込めませんでした。書き出した案件JSONを選択してください。";
+          showToast("読み込みできませんでした");
+        } finally {
+          els.importProjectFile.value = "";
+        }
+      });
+      reader.addEventListener("error", () => {
+        els.saveStatus.textContent = "JSONファイルを読み込めませんでした。";
+        showToast("読み込みできませんでした");
+        els.importProjectFile.value = "";
+      });
+      reader.readAsText(file, "utf-8");
     }
 
     function rangeLabel(range) {
@@ -926,7 +2004,7 @@
     function populateClasses() {
       const selectedType = getSelectedType();
       els.class.innerHTML = selectedType.classes
-        .map((item, index) => `<option value="${index}">${item.label}</option>`)
+        .map((item, index) => `<option value="${index}">${item.label}（${item.examples}）</option>`)
         .join("");
       els.class.disabled = selectedType.classes.length === 1;
       syncUsageText();
@@ -948,6 +2026,580 @@
       }).join("");
     }
 
+    function typeOptionsHtml(selectedIndex) {
+      return facilityData
+        .map((item, index) => `<option value="${index}"${index === selectedIndex ? " selected" : ""}>${item.id} ${item.name}</option>`)
+        .join("");
+    }
+
+    function classOptionsHtml(typeIndex, selectedIndex) {
+      const selectedType = facilityData[typeIndex] || facilityData[0];
+      return selectedType.classes
+        .map((item, index) => `<option value="${index}"${index === selectedIndex ? " selected" : ""}>${item.label}（${item.examples}）</option>`)
+        .join("");
+    }
+
+    function setModeVisibility() {
+      const mode = getMode();
+      els.singleModePanel.hidden = mode !== "single";
+      els.compositeModePanel.hidden = mode !== "composite";
+      els.rateInputRow.classList.toggle("single-column", mode === "composite");
+      els.excludedRate.disabled = mode === "composite";
+      els.excludedRateModeHint.hidden = mode !== "composite";
+      document.querySelectorAll("[data-single-adjustment]").forEach((element) => {
+        element.hidden = mode !== "single";
+      });
+    }
+
+    function addCompositeRow(row = {}) {
+      const newRow = {
+        id: compositeRowId++,
+        usageMemo: row.usageMemo || "",
+        typeIndex: Number.isFinite(row.typeIndex) ? row.typeIndex : 0,
+        classIndex: Number.isFinite(row.classIndex) ? row.classIndex : 0,
+        area: row.area ?? ""
+      };
+      compositeRows.push(newRow);
+      if (mainUseRowId === null) mainUseRowId = newRow.id;
+      renderCompositeRows();
+      calculate();
+    }
+
+    function deleteCompositeRow(rowId) {
+      const rowIndex = compositeRows.findIndex((row) => row.id === rowId);
+      if (rowIndex < 2 || compositeRows.length <= 2) {
+        els.compositeModeStatus.className = "status warn";
+        els.compositeModeStatus.textContent = "複合用途モードでは、2以上の用途を入力してください。";
+        return;
+      }
+      compositeRows = compositeRows.filter((row) => row.id !== rowId);
+      if (mainUseRowId === rowId) {
+        mainUseRowId = compositeRows[0]?.id ?? null;
+      }
+      renderCompositeRows();
+      calculate();
+    }
+
+    function renderCompositeRows() {
+      if (!compositeRows.some((row) => row.id === mainUseRowId)) {
+        mainUseRowId = compositeRows[0]?.id ?? null;
+      }
+      els.compositeBody.innerHTML = compositeRows.map((row, index) => {
+        const selectedType = facilityData[row.typeIndex] || facilityData[0];
+        const classIndex = Math.min(row.classIndex, selectedType.classes.length - 1);
+        const usageMemo = !row.usageMemo || /^用途\d+$/.test(row.usageMemo)
+          ? `用途${index + 1}`
+          : row.usageMemo;
+        row.usageMemo = usageMemo;
+        return `
+          <tr data-composite-row-id="${row.id}">
+            <td>
+              <input type="radio" name="mainUseRow" value="${row.id}" data-main-use-row="${row.id}"${row.id === mainUseRowId ? " checked" : ""}>
+            </td>
+            <td>
+              <input class="memo-input" type="text" required value="${escapeHtml(usageMemo)}" data-composite-field="usageMemo" data-row-id="${row.id}">
+            </td>
+            <td>
+              <select data-composite-field="typeIndex" data-row-id="${row.id}">
+                ${typeOptionsHtml(row.typeIndex)}
+              </select>
+            </td>
+            <td>
+              <select data-composite-field="classIndex" data-row-id="${row.id}"${selectedType.classes.length === 1 ? " disabled" : ""}>
+                ${classOptionsHtml(row.typeIndex, classIndex)}
+              </select>
+            </td>
+            <td>
+              <input class="area-input" type="number" min="0" step="1" required value="${row.area}" data-composite-field="area" data-row-id="${row.id}">
+              <span class="row-warning" id="composite-warning-${row.id}" hidden></span>
+            </td>
+            <td id="composite-range-${row.id}">-</td>
+            <td id="composite-formula-${row.id}">-</td>
+            <td id="composite-a-${row.id}">-</td>
+            <td id="composite-b-${row.id}">-</td>
+            <td id="composite-hours-${row.id}">0.0</td>
+            <td><button class="secondary" type="button" data-delete-composite-row="${row.id}"${index < 2 ? " disabled" : ""}>削除</button></td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function syncCompositeStateFromInput(input) {
+      const rowId = Number(input.dataset.rowId);
+      const field = input.dataset.compositeField;
+      const row = compositeRows.find((item) => item.id === rowId);
+      if (!row || !field) return;
+
+      if (field === "usageMemo") {
+        row.usageMemo = input.value;
+        return;
+      }
+
+      if (field === "typeIndex") {
+        row.typeIndex = Number(input.value);
+        row.classIndex = 0;
+        renderCompositeRows();
+        return;
+      }
+
+      if (field === "classIndex") {
+        row.classIndex = Number(input.value);
+        return;
+      }
+
+      if (field === "area") {
+        row.area = input.value;
+      }
+    }
+
+    function calculateMainUseComparison(compositeRowsData, totalArea, compositeHours) {
+      const mainRow = compositeRowsData.find((row) => row.sourceId === mainUseRowId) || compositeRowsData[0];
+      if (!mainRow) {
+        return {
+          mainRow: null,
+          mainUseHours: 0,
+          difference: compositeHours,
+          differenceRate: 0,
+          rangeText: "-",
+          formulaText: "-",
+          a: "-",
+          b: "-"
+        };
+      }
+
+      const sourceRow = compositeRows.find((row) => row.id === mainRow.sourceId);
+      const selectedType = facilityData[sourceRow?.typeIndex] || facilityData[0];
+      const selectedClass = selectedType.classes[sourceRow?.classIndex] || selectedType.classes[0];
+      const { range } = selectRange(totalArea, selectedClass);
+      const mainUseHours = roundTo(Math.max(0, calculateHours(totalArea, range)), 1);
+      const difference = roundTo(compositeHours - mainUseHours, 1);
+      const differenceRate = mainUseHours === 0 ? 0 : roundTo(difference / mainUseHours * 100, 1);
+
+      return {
+        mainRow,
+        typeLabel: `${selectedType.id} ${selectedType.name}`,
+        classLabel: selectedClass.label,
+        mainUseHours,
+        difference,
+        differenceRate,
+        rangeText: rangeLabel(range),
+        formulaText: formulaLabel(range),
+        a: range.a,
+        b: range.b
+      };
+    }
+
+    function calculateCompositeRows() {
+      let totalArea = 0;
+      let baseCompositeHours = 0;
+      let invalidAreaCount = 0;
+      const rows = [];
+
+      compositeRows.forEach((row) => {
+        const selectedType = facilityData[row.typeIndex] || facilityData[0];
+        const selectedClass = selectedType.classes[row.classIndex] || selectedType.classes[0];
+        const rawArea = row.area;
+        const area = Number(rawArea);
+        const hasValidArea = rawArea !== "" && Number.isFinite(area) && area > 0;
+        let warning = "";
+
+        if (!hasValidArea) {
+          invalidAreaCount += 1;
+          warning = "複合用途モードでは、各用途ごとの延べ床面積を入力してください。";
+          setText(`composite-range-${row.id}`, "-");
+          setText(`composite-formula-${row.id}`, "-");
+          setText(`composite-a-${row.id}`, "-");
+          setText(`composite-b-${row.id}`, "-");
+          setText(`composite-hours-${row.id}`, "0.0");
+          const warningElement = document.getElementById(`composite-warning-${row.id}`);
+          if (warningElement) {
+            warningElement.textContent = warning;
+            warningElement.hidden = false;
+          }
+          return;
+        }
+
+        const { range, inRange } = selectRange(area, selectedClass);
+        const hours = roundTo(Math.max(0, calculateHours(area, range)), 1);
+        warning = !inRange ? "この用途の床面積は選択した類型・区分の適用規模外です。" : "";
+
+        totalArea += area;
+        baseCompositeHours += hours;
+
+        setText(`composite-range-${row.id}`, rangeLabel(range));
+        setText(`composite-formula-${row.id}`, formulaLabel(range));
+        setText(`composite-a-${row.id}`, String(range.a));
+        setText(`composite-b-${row.id}`, String(range.b));
+        setText(`composite-hours-${row.id}`, formatNumber(hours, 1));
+        const warningElement = document.getElementById(`composite-warning-${row.id}`);
+        if (warningElement) {
+          warningElement.textContent = warning;
+          warningElement.hidden = !warning;
+        }
+
+        rows.push({
+          sourceId: row.id,
+          usageMemo: row.usageMemo,
+          typeLabel: `${selectedType.id} ${selectedType.name}`,
+          classLabel: selectedClass.label,
+          area,
+          range,
+          rangeText: rangeLabel(range),
+          formulaText: formulaLabel(range),
+          a: range.a,
+          b: range.b,
+          hours,
+          inRange,
+          warning
+        });
+      });
+
+      const inputCompositeFactor = inputNumber(els.compositeFactor, 1.07);
+      const applyCompositeFactor = els.applyCompositeFactor.checked;
+      const effectiveCompositeFactor = applyCompositeFactor ? inputCompositeFactor : 1;
+      const compositeHours = roundTo(baseCompositeHours * effectiveCompositeFactor, 1);
+      const mainUseComparison = calculateMainUseComparison(rows, totalArea, compositeHours);
+
+      els.compositeAreaTotal.textContent = `${formatNumber(totalArea, 0)}㎡`;
+      els.baseCompositeHours.textContent = formatNumber(baseCompositeHours, 1);
+      els.effectiveCompositeFactor.textContent = formatNumber(effectiveCompositeFactor, 2);
+      els.compositeHours.textContent = formatNumber(compositeHours, 1);
+      els.comparisonCompositeHours.textContent = `${formatNumber(compositeHours, 1)}人・時間`;
+      els.mainUseHours.textContent = `${formatNumber(mainUseComparison.mainUseHours, 1)}人・時間`;
+      els.mainUseDifference.textContent = `${formatNumber(mainUseComparison.difference, 1)}人・時間`;
+      els.mainUseDifferenceRate.textContent = `${formatNumber(mainUseComparison.differenceRate, 1)}%`;
+
+      if (compositeRows.length < 2) {
+        els.compositeModeStatus.className = "status warn";
+        els.compositeModeStatus.textContent = "複合用途モードでは、2以上の用途を入力してください。";
+      } else if (invalidAreaCount > 0) {
+        els.compositeModeStatus.className = "status warn";
+        els.compositeModeStatus.textContent = "複合用途モードでは、各用途ごとの延べ床面積を入力してください。";
+      } else {
+        els.compositeModeStatus.className = "status ok";
+        els.compositeModeStatus.textContent = "複合用途の延べ床面積が入力されています。";
+      }
+
+      return {
+        rows,
+        totalArea,
+        baseCompositeHours,
+        invalidAreaCount,
+        inputCompositeFactor,
+        applyCompositeFactor,
+        effectiveCompositeFactor,
+        compositeHours,
+        mainUseComparison
+      };
+    }
+
+    function makeCompositeMemo(compositeData) {
+      if (!compositeData) return "";
+      const header = "用途名\t類型\t区分\t延べ床面積\t適用規模\t算定式\t係数a\t係数b\t設備人・時間A";
+      const lines = compositeData.rows.map((row) => [
+        row.usageMemo || "-",
+        row.typeLabel,
+        row.classLabel,
+        `${formatNumber(row.area, 0)}㎡`,
+        row.rangeText,
+        row.formulaText,
+        row.a,
+        row.b,
+        `${formatNumber(row.hours, 1)} 人・時間`
+      ].join("\t"));
+      return [
+        "複合用途内訳",
+        header,
+        ...lines,
+        `用途別延べ床面積合計：${formatNumber(compositeData.totalArea, 0)}㎡`,
+        `複合前設備人・時間合計：${formatNumber(compositeData.baseCompositeHours, 1)} 人・時間`,
+        `複合化係数を適用：${compositeData.applyCompositeFactor ? "はい" : "いいえ"}`,
+        `複合化係数：${formatNumber(compositeData.effectiveCompositeFactor, 2)}`,
+        `複合後設備人・時間：${formatNumber(compositeData.compositeHours, 1)} 人・時間`,
+        "主用途扱いとの比較",
+        `主用途：${compositeData.mainUseComparison.mainRow?.usageMemo || "-"} / ${compositeData.mainUseComparison.typeLabel || "-"} / ${compositeData.mainUseComparison.classLabel || "-"}`,
+        `複合用途計算：${formatNumber(compositeData.compositeHours, 1)}人・時間`,
+        `主用途扱い計算：${formatNumber(compositeData.mainUseComparison.mainUseHours, 1)}人・時間`,
+        `差分：${formatNumber(compositeData.mainUseComparison.difference, 1)}人・時間`,
+        `差分率：${formatNumber(compositeData.mainUseComparison.differenceRate, 1)}%`
+      ].join("\n");
+    }
+
+    function disciplineInput(index, field, value, step) {
+      return `<span class="input-with-unit">
+        <input type="number" min="0" step="${step}" value="${value}" data-discipline-index="${index}" data-field="${field}">
+        <span class="unit">${field === "difficulty" ? "" : field === "specialExpense" ? "円" : field === "additionalHours" ? "人・時間" : "%"}</span>
+      </span>`;
+    }
+
+    function renderDisciplineTable() {
+      els.disciplineBody.innerHTML = disciplineDefaults.map((item, index) => `
+        <tr>
+          <td class="left">${item.name}</td>
+          <td>${disciplineInput(index, "allocation", item.allocation, "0.1")}</td>
+          <td id="discipline-general-${index}">0.0</td>
+          <td>${disciplineInput(index, "excludedRate", item.excludedRate, "0.1")}</td>
+          <td>${disciplineInput(index, "difficulty", item.difficulty.toFixed(2), "0.01")}</td>
+          <td>${disciplineInput(index, "additionalHours", item.additionalHours, "0.1")}</td>
+          <td id="discipline-adjusted-${index}">0.0</td>
+          <td id="discipline-direct-${index}">0 円</td>
+          <td id="discipline-overhead-${index}">0 円</td>
+          <td id="discipline-technical-${index}">0 円</td>
+          <td>${disciplineInput(index, "specialExpense", item.specialExpense, "1")}</td>
+          <td id="discipline-before-tax-${index}">0 円</td>
+          <td id="discipline-tax-${index}">0 円</td>
+          <td id="discipline-after-tax-${index}">0 円</td>
+        </tr>
+      `).join("");
+
+      els.disciplineFoot.innerHTML = `
+        <tr>
+          <td class="left">合計</td>
+          <td id="discipline-total-allocation">100.0%</td>
+          <td id="discipline-total-general">0.0</td>
+          <td>-</td>
+          <td>-</td>
+          <td id="discipline-total-additional">0.0</td>
+          <td id="discipline-total-adjusted">0.0</td>
+          <td id="discipline-total-direct">0 円</td>
+          <td id="discipline-total-overhead">0 円</td>
+          <td id="discipline-total-technical">0 円</td>
+          <td id="discipline-total-special">0 円</td>
+          <td id="discipline-total-before-tax">0 円</td>
+          <td id="discipline-total-tax">0 円</td>
+          <td id="discipline-total-after-tax">0 円</td>
+        </tr>
+      `;
+    }
+
+    function getDisciplineValue(index, field, fallback) {
+      const input = document.querySelector(`[data-discipline-index="${index}"][data-field="${field}"]`);
+      return input ? inputNumber(input, fallback) : fallback;
+    }
+
+    function setText(id, value) {
+      const element = document.getElementById(id);
+      if (element) element.textContent = value;
+    }
+
+    function calculateDisciplineBreakdown(baseHours, hourlyRate, overheadRate, technicalRate, taxRate) {
+      const totals = {
+        allocation: 0,
+        generalHours: 0,
+        additionalHours: 0,
+        adjustedHours: 0,
+        directLabor: 0,
+        overhead: 0,
+        technical: 0,
+        specialExpense: 0,
+        beforeTax: 0,
+        tax: 0,
+        afterTax: 0
+      };
+
+      const rows = disciplineDefaults.map((item, index) => {
+        const allocation = getDisciplineValue(index, "allocation", item.allocation);
+        const excludedRate = getDisciplineValue(index, "excludedRate", item.excludedRate);
+        const difficulty = getDisciplineValue(index, "difficulty", item.difficulty);
+        const additionalHours = roundTo(getDisciplineValue(index, "additionalHours", item.additionalHours), 1);
+        const specialExpense = Math.round(getDisciplineValue(index, "specialExpense", item.specialExpense));
+        const generalHours = roundTo(baseHours * allocation / 100, 1);
+        const adjustedHours = roundTo(Math.max(0, generalHours * (1 - excludedRate / 100) * difficulty + additionalHours), 1);
+        const directLabor = Math.round(adjustedHours * hourlyRate);
+        const overhead = Math.round(directLabor * overheadRate);
+        const technical = Math.round((directLabor + overhead) * technicalRate);
+        const beforeTax = directLabor + overhead + technical + specialExpense;
+        const tax = Math.round(beforeTax * taxRate);
+        const afterTax = beforeTax + tax;
+
+        const result = {
+          name: item.name,
+          allocation,
+          generalHours,
+          excludedRate,
+          difficulty,
+          additionalHours,
+          adjustedHours,
+          directLabor,
+          overhead,
+          technical,
+          specialExpense,
+          beforeTax,
+          tax,
+          afterTax
+        };
+
+        totals.allocation += allocation;
+        totals.generalHours += generalHours;
+        totals.additionalHours += additionalHours;
+        totals.adjustedHours += adjustedHours;
+        totals.directLabor += directLabor;
+        totals.overhead += overhead;
+        totals.technical += technical;
+        totals.specialExpense += specialExpense;
+        totals.beforeTax += beforeTax;
+        totals.tax += tax;
+        totals.afterTax += afterTax;
+
+        return result;
+      });
+
+      return { rows, totals };
+    }
+
+    function renderDisciplineResults(breakdown) {
+      breakdown.rows.forEach((row, index) => {
+        setText(`discipline-general-${index}`, formatNumber(row.generalHours, 1));
+        setText(`discipline-adjusted-${index}`, formatNumber(row.adjustedHours, 1));
+        setText(`discipline-direct-${index}`, formatYen(row.directLabor));
+        setText(`discipline-overhead-${index}`, formatYen(row.overhead));
+        setText(`discipline-technical-${index}`, formatYen(row.technical));
+        setText(`discipline-before-tax-${index}`, formatYen(row.beforeTax));
+        setText(`discipline-tax-${index}`, formatYen(row.tax));
+        setText(`discipline-after-tax-${index}`, formatYen(row.afterTax));
+      });
+
+      setText("discipline-total-allocation", `${formatNumber(breakdown.totals.allocation, 1)}%`);
+      setText("discipline-total-general", formatNumber(breakdown.totals.generalHours, 1));
+      setText("discipline-total-additional", formatNumber(breakdown.totals.additionalHours, 1));
+      setText("discipline-total-adjusted", formatNumber(breakdown.totals.adjustedHours, 1));
+      setText("discipline-total-direct", formatYen(breakdown.totals.directLabor));
+      setText("discipline-total-overhead", formatYen(breakdown.totals.overhead));
+      setText("discipline-total-technical", formatYen(breakdown.totals.technical));
+      setText("discipline-total-special", formatYen(breakdown.totals.specialExpense));
+      setText("discipline-total-before-tax", formatYen(breakdown.totals.beforeTax));
+      setText("discipline-total-tax", formatYen(breakdown.totals.tax));
+      setText("discipline-total-after-tax", formatYen(breakdown.totals.afterTax));
+
+      if (Math.abs(breakdown.totals.allocation - 100) < 0.05) {
+        els.disciplineStatus.className = "status ok";
+        els.disciplineStatus.textContent = "工種別配分率の合計は100%です。";
+      } else {
+        els.disciplineStatus.className = "status warn";
+        els.disciplineStatus.textContent = `工種別配分率の合計が100%ではありません。現在の合計：${formatNumber(breakdown.totals.allocation, 1)}%`;
+      }
+    }
+
+    function makeDisciplineMemo(breakdown) {
+      const header = "工種\t配分率\t一般業務人・時間\t対象外業務率\t難易度係数\t追加業務時間\t補正後人・時間\t直接人件費\t諸経費\t技術料等経費\t特別経費\t税抜金額\t消費税\t税込金額";
+      const lines = breakdown.rows.map((row) => [
+        row.name,
+        `${formatNumber(row.allocation, 1)}%`,
+        `${formatNumber(row.generalHours, 1)} 人・時間`,
+        `${formatNumber(row.excludedRate, 1)}%`,
+        formatNumber(row.difficulty, 2),
+        `${formatNumber(row.additionalHours, 1)} 人・時間`,
+        `${formatNumber(row.adjustedHours, 1)} 人・時間`,
+        formatYen(row.directLabor),
+        formatYen(row.overhead),
+        formatYen(row.technical),
+        formatYen(row.specialExpense),
+        formatYen(row.beforeTax),
+        formatYen(row.tax),
+        formatYen(row.afterTax)
+      ].join("\t"));
+      const total = [
+        "合計",
+        `${formatNumber(breakdown.totals.allocation, 1)}%`,
+        `${formatNumber(breakdown.totals.generalHours, 1)} 人・時間`,
+        "-",
+        "-",
+        `${formatNumber(breakdown.totals.additionalHours, 1)} 人・時間`,
+        `${formatNumber(breakdown.totals.adjustedHours, 1)} 人・時間`,
+        formatYen(breakdown.totals.directLabor),
+        formatYen(breakdown.totals.overhead),
+        formatYen(breakdown.totals.technical),
+        formatYen(breakdown.totals.specialExpense),
+        formatYen(breakdown.totals.beforeTax),
+        formatYen(breakdown.totals.tax),
+        formatYen(breakdown.totals.afterTax)
+      ].join("\t");
+      return [
+        "工種別内訳（配分率による按分概算）",
+        "工種別内訳は設備一式の業務人・時間数を配分率で按分した概算です。",
+        header,
+        ...lines,
+        total
+      ].join("\n");
+    }
+
+    function estimateTable(headers, rows) {
+      return `
+        <div class="table-wrap">
+          <table class="estimate-table">
+            <thead>
+              <tr>${headers.map((header) => `<th>${escapeHtml(header)}</th>`).join("")}</tr>
+            </thead>
+            <tbody>
+              ${rows.map((row) => `<tr>${row.map((cell) => `<td>${escapeHtml(cell)}</td>`).join("")}</tr>`).join("")}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function makeEstimateHtml(data) {
+      const workRows = data.disciplineRows.map((row) => [
+        row.name,
+        `${formatNumber(row.allocation, 1)}%`,
+        `${formatNumber(row.adjustedHours, 1)} 人・時間`,
+        formatYen(row.beforeTax),
+        formatYen(row.afterTax)
+      ]);
+      const additionalAmount = Math.round(data.additionalHours * data.hourlyRate);
+
+      return `
+        <h3 class="estimate-title">設備設計費 概算見積書</h3>
+        <dl class="estimate-meta">
+          <div><dt>案件名</dt><dd>${escapeHtml(data.projectName)}</dd></div>
+          <div><dt>建物用途</dt><dd>${escapeHtml(data.buildingUse)}</dd></div>
+          <div><dt>延べ床面積</dt><dd>${escapeHtml(data.totalArea)}</dd></div>
+          <div><dt>算定方式</dt><dd>${escapeHtml(data.calculationMethod)}</dd></div>
+          <div><dt>技師C基準日額</dt><dd>${escapeHtml(formatYen(data.engineerDailyRate).replace(" 円", "円/人・日"))}</dd></div>
+          <div><dt>時間換算単価</dt><dd>${escapeHtml(`${formatNumber(data.hourlyRate, 1)}円/人・時間`)}</dd></div>
+        </dl>
+        <div class="estimate-section">
+          <h4>1. 設備設計一般業務</h4>
+          ${estimateTable(["項目", "人・時間", "金額"], [
+            ["一般業務に係る業務人・時間数 A", `${formatNumber(data.baseHours, 1)} 人・時間`, "-"],
+            ["補正後・追加業務込み人・時間", `${formatNumber(data.adjustedHours, 1)} 人・時間`, "-"],
+            ["直接人件費", "-", formatYen(data.directLabor)],
+            ["諸経費", "-", formatYen(data.overhead)],
+            ["技術料等経費", "-", formatYen(data.technical)]
+          ])}
+        </div>
+        <div class="estimate-section">
+          <h4>2. 工種別内訳</h4>
+          ${estimateTable(["工種", "配分率", "補正後人・時間", "税抜金額", "税込金額"], workRows)}
+          <p class="estimate-note">工種別内訳は、設備一式の業務人・時間数を配分率で按分した概算です。</p>
+        </div>
+        <div class="estimate-section">
+          <h4>3. 追加業務</h4>
+          ${estimateTable(["項目", "数量", "参考金額"], [
+            ["追加業務時間", `${formatNumber(data.additionalHours, 1)} 人・時間`, formatYen(additionalAmount)]
+          ])}
+        </div>
+        <div class="estimate-section">
+          <h4>4. 特別経費</h4>
+          ${estimateTable(["項目", "金額"], [
+            ["特別経費", formatYen(data.specialExpense)]
+          ])}
+        </div>
+        <div class="estimate-total-list">
+          <div class="estimate-total-row"><span>5. 税抜合計</span><span>${escapeHtml(formatYen(data.beforeTax))}</span></div>
+          <div class="estimate-total-row"><span>6. 消費税</span><span>${escapeHtml(formatYen(data.tax))}</span></div>
+          <div class="estimate-total-row"><span>7. 税込合計</span><span>${escapeHtml(formatYen(data.afterTax))}</span></div>
+        </div>
+        <p class="estimate-note">これは概算見積書です。正式な見積・契約では、最新の要領、契約範囲、追加業務、特別経費、消費税率を確認してください。</p>
+      `;
+    }
+
+    function renderEstimatePreview(data) {
+      lastEstimateHtml = makeEstimateHtml(data);
+      els.estimateSheet.innerHTML = lastEstimateHtml;
+      els.estimatePrintSheet.innerHTML = lastEstimateHtml;
+    }
+
     function showToast(message) {
       els.toast.textContent = message;
       els.toast.classList.add("show");
@@ -955,6 +2607,7 @@
     }
 
     function calculate() {
+      const mode = getMode();
       const selectedType = getSelectedType();
       const selectedClass = getSelectedClass();
       const area = Math.max(0, inputNumber(els.area));
@@ -963,27 +2616,33 @@
       const excludedRate = inputNumber(els.excludedRate) / 100;
       const difficulty = inputNumber(els.difficulty, 1);
       const additionalHours = inputNumber(els.additionalHours);
-      const unitPrice = inputNumber(els.unitPrice);
-      const overheadRate = inputNumber(els.overheadRate) / 100;
-      const technicalRate = inputNumber(els.technicalRate) / 100;
+      const engineerDailyRate = inputNumber(els.engineerDailyRate);
+      const hourlyRate = engineerDailyRate / 8;
+      const overheadRate = inputNumber(els.overheadRate);
+      const technicalRate = inputNumber(els.technicalRate);
       const specialExpense = inputNumber(els.specialExpense);
       const taxRate = inputNumber(els.taxRate) / 100;
+      const compositeData = mode === "composite" ? calculateCompositeRows() : null;
+      const equipmentHours = compositeData ? compositeData.compositeHours : baseHours;
 
-      const afterExclusion = Math.max(0, baseHours * (1 - excludedRate));
-      const afterDifficulty = Math.max(0, afterExclusion * difficulty);
-      const totalHours = Math.max(0, afterDifficulty + additionalHours);
-      const directLabor = totalHours * unitPrice;
-      const overhead = directLabor * overheadRate;
-      const technical = directLabor * technicalRate;
-      const beforeTax = directLabor + overhead + technical + specialExpense;
-      const tax = beforeTax * taxRate;
+      const afterExclusion = roundTo(Math.max(0, baseHours * (1 - excludedRate)), 1);
+      const afterDifficulty = roundTo(Math.max(0, afterExclusion * difficulty), 1);
+      const totalHours = roundTo(Math.max(0, afterDifficulty + additionalHours), 1);
+      const directLabor = Math.round(totalHours * hourlyRate);
+      const overhead = Math.round(directLabor * overheadRate);
+      const technical = Math.round((directLabor + overhead) * technicalRate);
+      const roundedSpecialExpense = Math.round(specialExpense);
+      const beforeTax = directLabor + overhead + technical + roundedSpecialExpense;
+      const tax = Math.round(beforeTax * taxRate);
       const afterTax = beforeTax + tax;
+      const disciplineBreakdown = calculateDisciplineBreakdown(equipmentHours, hourlyRate, overheadRate, technicalRate, taxRate);
 
       els.range.textContent = rangeLabel(range);
       els.formula.textContent = formulaLabel(range);
       els.a.textContent = String(range.a);
       els.b.textContent = String(range.b);
-      els.baseHours.textContent = formatNumber(baseHours);
+      els.baseHours.textContent = formatNumber(equipmentHours, 1);
+      els.hourlyRate.textContent = formatNumber(hourlyRate, 1);
 
       if (inRange) {
         els.status.className = "status ok";
@@ -993,41 +2652,142 @@
         els.status.textContent = `適用規模外です。計算は最も近い区分（${rangeLabel(range)}）の係数で行っています。`;
       }
 
-      const rows = [
-        { name: "対象外業務控除後の人・時間", value: `${formatNumber(afterExclusion)} 人・時間` },
-        { name: "難易度補正後の人・時間", value: `${formatNumber(afterDifficulty)} 人・時間` },
-        { name: "追加業務込みの人・時間", value: `${formatNumber(totalHours)} 人・時間` },
+      const rows = mode === "composite" ? [
+        { name: "計算モード", value: "複合用途モード" },
+        { name: "用途別延べ床面積合計", value: `${formatNumber(compositeData.totalArea, 0)} ㎡` },
+        { name: "複合前設備人・時間合計", value: `${formatNumber(compositeData.baseCompositeHours, 1)} 人・時間` },
+        { name: "複合化係数", value: `${formatNumber(compositeData.effectiveCompositeFactor, 2)}${compositeData.applyCompositeFactor ? "" : "（適用なし）"}` },
+        { name: "複合後設備人・時間", value: `${formatNumber(compositeData.compositeHours, 1)} 人・時間` },
+        { name: "主用途扱い比較に使用", value: `${compositeData.mainUseComparison.mainRow?.usageMemo || "-"} / ${compositeData.mainUseComparison.typeLabel || "-"} / ${compositeData.mainUseComparison.classLabel || "-"}` },
+        { name: "主用途扱い計算", value: `${formatNumber(compositeData.mainUseComparison.mainUseHours, 1)} 人・時間` },
+        { name: "主用途扱いとの差分", value: `${formatNumber(compositeData.mainUseComparison.difference, 1)} 人・時間` },
+        { name: "主用途扱いとの差分率", value: `${formatNumber(compositeData.mainUseComparison.differenceRate, 1)}%` },
+        { name: "技師C基準日額", value: `${formatNumber(engineerDailyRate, 0)} 円/人・日` },
+        { name: "時間換算単価", value: `${formatNumber(hourlyRate, 1)} 円/人・時間` },
+        { name: "直接人件費", value: formatYen(disciplineBreakdown.totals.directLabor) },
+        { name: "諸経費", value: formatYen(disciplineBreakdown.totals.overhead) },
+        { name: "技術料等経費", value: formatYen(disciplineBreakdown.totals.technical) },
+        { name: "特別経費", value: formatYen(disciplineBreakdown.totals.specialExpense) },
+        { name: "税抜合計", value: formatYen(disciplineBreakdown.totals.beforeTax) },
+        { name: "消費税", value: formatYen(disciplineBreakdown.totals.tax) },
+        { name: "税込合計", value: formatYen(disciplineBreakdown.totals.afterTax), total: true }
+      ] : [
+        { name: "計算モード", value: "単一用途モード" },
+        { name: "対象外業務控除後の人・時間", value: `${formatNumber(afterExclusion, 1)} 人・時間` },
+        { name: "難易度補正後の人・時間", value: `${formatNumber(afterDifficulty, 1)} 人・時間` },
+        { name: "追加業務込みの人・時間", value: `${formatNumber(totalHours, 1)} 人・時間` },
+        { name: "技師C基準日額", value: `${formatNumber(engineerDailyRate, 0)} 円/人・日` },
+        { name: "時間換算単価", value: `${formatNumber(hourlyRate, 1)} 円/人・時間` },
         { name: "直接人件費", value: formatYen(directLabor) },
         { name: "諸経費", value: formatYen(overhead) },
         { name: "技術料等経費", value: formatYen(technical) },
-        { name: "特別経費", value: formatYen(specialExpense) },
+        { name: "特別経費", value: formatYen(roundedSpecialExpense) },
         { name: "税抜合計", value: formatYen(beforeTax) },
         { name: "消費税", value: formatYen(tax) },
         { name: "税込合計", value: formatYen(afterTax), total: true }
       ];
 
+      const projectName = els.projectName.value.trim() || "（未入力）";
+      const buildingUse = mode === "composite"
+        ? (compositeData.rows.length
+          ? compositeData.rows.map((row) => `${row.usageMemo || "用途"}（${row.typeLabel}・${row.classLabel}・${formatNumber(row.area, 0)}㎡）`).join("、")
+          : "複合用途")
+        : `${els.usage.value || selectedType.name}（${selectedType.id} ${selectedType.name}・${selectedClass.label}）`;
+      const calculationMethod = mode === "composite"
+        ? `複合用途モード（複合化係数 ${formatNumber(compositeData.effectiveCompositeFactor, 2)}${compositeData.applyCompositeFactor ? " 適用" : " 適用なし"}）`
+        : `単一用途モード（${formulaLabel(range)}）`;
+      const estimateTotals = mode === "composite"
+        ? {
+          adjustedHours: disciplineBreakdown.totals.adjustedHours,
+          additionalHours: disciplineBreakdown.totals.additionalHours,
+          directLabor: disciplineBreakdown.totals.directLabor,
+          overhead: disciplineBreakdown.totals.overhead,
+          technical: disciplineBreakdown.totals.technical,
+          specialExpense: disciplineBreakdown.totals.specialExpense,
+          beforeTax: disciplineBreakdown.totals.beforeTax,
+          tax: disciplineBreakdown.totals.tax,
+          afterTax: disciplineBreakdown.totals.afterTax
+        }
+        : {
+          adjustedHours: totalHours,
+          additionalHours,
+          directLabor,
+          overhead,
+          technical,
+          specialExpense: roundedSpecialExpense,
+          beforeTax,
+          tax,
+          afterTax
+        };
+      const estimateData = {
+        projectName,
+        buildingUse,
+        totalArea: `${formatNumber(mode === "composite" ? compositeData.totalArea : area, 0)} ㎡`,
+        calculationMethod,
+        engineerDailyRate,
+        hourlyRate,
+        baseHours: equipmentHours,
+        adjustedHours: estimateTotals.adjustedHours,
+        additionalHours: estimateTotals.additionalHours,
+        directLabor: estimateTotals.directLabor,
+        overhead: estimateTotals.overhead,
+        technical: estimateTotals.technical,
+        specialExpense: estimateTotals.specialExpense,
+        beforeTax: estimateTotals.beforeTax,
+        tax: estimateTotals.tax,
+        afterTax: estimateTotals.afterTax,
+        disciplineRows: disciplineBreakdown.rows
+      };
+
       renderSummary(rows);
+      renderDisciplineResults(disciplineBreakdown);
+      renderEstimatePreview(estimateData);
 
       lastResultText = [
         "設備設計 一般業務人・時間数 簡易計算",
-        `建築物の類型：${selectedType.id} ${selectedType.name}`,
-        `類：${selectedClass.label}`,
-        `用途名：${els.usage.value}`,
-        `床面積 S：${formatNumber(area, 0)} ㎡`,
-        `適用規模：${rangeLabel(range)}`,
-        `算定式：${formulaLabel(range)}`,
-        `係数 a：${range.a}`,
-        `係数 b：${range.b}`,
-        `一般業務に係る業務人・時間数 A：${formatNumber(baseHours)} 人・時間`,
+        `案件名：${projectName}`,
+        `計算モード：${mode === "composite" ? "複合用途モード" : "単一用途モード"}`,
+        ...(mode === "composite" ? [
+          makeCompositeMemo(compositeData),
+          `一般業務に係る業務人・時間数 A：${formatNumber(equipmentHours, 1)} 人・時間`
+        ] : [
+          `建築物の類型：${selectedType.id} ${selectedType.name}`,
+          `類：${selectedClass.label}`,
+          `用途名：${els.usage.value}`,
+          `延べ床面積 S：${formatNumber(area, 0)} ㎡`,
+          `適用規模：${rangeLabel(range)}`,
+          `算定式：${formulaLabel(range)}`,
+          `係数 a：${range.a}`,
+          `係数 b：${range.b}`,
+          `一般業務に係る業務人・時間数 A：${formatNumber(baseHours, 1)} 人・時間`
+        ]),
+        `技師C基準日額：${formatNumber(engineerDailyRate, 0)}円/人・日`,
+        `時間換算単価：${formatNumber(hourlyRate, 1)}円/人・時間`,
+        "直接人件費 = 追加業務込み人・時間 × 時間換算単価",
         ...rows.map((row) => `${row.name}：${row.value}`),
+        "",
+        makeDisciplineMemo(disciplineBreakdown),
         "注意：これは簡易計算用であり、正式な積算では最新の要領・契約範囲・追加業務を確認すること。",
+        "注意：工種別内訳は、国交省の設計・設備係数により算出した設備一式の業務人・時間数を、配分率で按分した概算です。国交省係数自体が電気・空調・衛生等の工種別係数を示しているわけではありません。",
+        "注意：複合用途モードでは、各用途の延べ床面積から設備設計の一般業務人・時間数を算定し、合算後に設計・設備の複合化係数を乗じます。",
         "本ツールは国土交通省の公式サービスではありません。"
       ].join("\n");
     }
 
     populateTypes();
     populateClasses();
+    renderDisciplineTable();
+    renderCompositeRows();
+    renderSavedProjectOptions();
+    setModeVisibility();
     calculate();
+
+    els.modeInputs.forEach((input) => {
+      input.addEventListener("change", () => {
+        setModeVisibility();
+        calculate();
+      });
+    });
 
     els.type.addEventListener("change", () => {
       populateClasses();
@@ -1043,6 +2803,46 @@
       input.addEventListener("input", calculate);
       input.addEventListener("change", calculate);
     });
+
+    els.addCompositeRow.addEventListener("click", () => {
+      addCompositeRow();
+    });
+
+    els.compositeBody.addEventListener("input", (event) => {
+      const input = event.target.closest("[data-composite-field]");
+      if (!input) return;
+      syncCompositeStateFromInput(input);
+      calculate();
+    });
+
+    els.compositeBody.addEventListener("change", (event) => {
+      const input = event.target.closest("[data-composite-field]");
+      if (!input) return;
+      syncCompositeStateFromInput(input);
+      calculate();
+    });
+
+    els.compositeBody.addEventListener("click", (event) => {
+      const mainUseInput = event.target.closest("[data-main-use-row]");
+      if (mainUseInput) {
+        mainUseRowId = Number(mainUseInput.dataset.mainUseRow);
+        calculate();
+        return;
+      }
+
+      const button = event.target.closest("[data-delete-composite-row]");
+      if (!button) return;
+      deleteCompositeRow(Number(button.dataset.deleteCompositeRow));
+    });
+
+    els.saveProject.addEventListener("click", saveCurrentProject);
+    els.loadProject.addEventListener("click", loadSelectedProject);
+    els.deleteProject.addEventListener("click", deleteSelectedProject);
+    els.exportProject.addEventListener("click", exportCurrentProject);
+    els.importProject.addEventListener("click", () => {
+      els.importProjectFile.click();
+    });
+    els.importProjectFile.addEventListener("change", importProjectFromFile);
 
     function fallbackCopy(text) {
       const textarea = document.createElement("textarea");
@@ -1068,6 +2868,23 @@
       } catch (error) {
         showToast(fallbackCopy(lastResultText) ? "コピーしました" : "コピーできませんでした");
       }
+    });
+
+    els.estimatePreviewButton.addEventListener("click", () => {
+      const willOpen = els.estimatePreview.hidden;
+      els.estimatePreview.hidden = !willOpen;
+      if (willOpen) {
+        els.estimatePreview.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+
+    els.estimatePrint.addEventListener("click", () => {
+      document.body.classList.add("estimate-print-mode");
+      window.print();
+    });
+
+    window.addEventListener("afterprint", () => {
+      document.body.classList.remove("estimate-print-mode");
     });
 
     els.print.addEventListener("click", () => {
